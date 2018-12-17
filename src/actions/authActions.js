@@ -32,28 +32,27 @@ export const logout = () => {
 }
 
 export const signup = (user) => {
-  const newUser = user
   return dispatch => {
-    return fetch(`${API_URL}/users`, {
+    return fetch(`${API_URL}/signup`, {
       method: "POST",
       headers: {
         "Accept":"application/json",
         "Content-Type":"application/json"
       },
-      body: JSON.stringify({user: user})
+      body: JSON.stringify(user)
     })
       .then(response => response.json())
-      .then(jresp => {
-        dispatch(authenticate({
-          name: newUser.name,
-          email: newUser.email,
-          password: newUser.password})
-        );
+      .then(response => {
+        const token = response.auth_token;
+        localStorage.setItem('token', token);
+        const user = response.user
+        localStorage.setItem('user', user)
+        dispatch(authSuccess(user, token))
       })
       .catch((errors) => {
         dispatch(authFailure(errors))
       })
-  };
+  }
 }
 
 export const authenticate = (credentials) => {
