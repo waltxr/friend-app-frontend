@@ -8,7 +8,8 @@ import './App.css';
 import Navigation from '../routes/Navigation';
 
 class App extends Component {
-  render() {    
+  render() {
+    console.log(this.props);    
     const {isAuthenticated, user} = this.props
     
     const guestViews = (

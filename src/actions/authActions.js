@@ -31,15 +31,17 @@ export const logout = () => {
   }
 }
 
-export const signup = (user) => {
+export const signup = (new_user) => {
+  console.log(new_user)
   return dispatch => {
+    console.log(dispatch);
     return fetch(`${API_URL}/signup`, {
       method: "POST",
       headers: {
         "Accept":"application/json",
         "Content-Type":"application/json"
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify(new_user)
     })
       .then(response => response.json())
       .then(response => {
