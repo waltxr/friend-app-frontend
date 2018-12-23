@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Link, withRouter } from "react-router-dom";
 import { logout } from '../actions/authActions';
+import { Menu, Container } from 'semantic-ui-react'
 
 class Navigation extends Component {
   handleLogout = (e) => {
@@ -14,8 +15,14 @@ class Navigation extends Component {
     
     const mainNav = (
       <ul>        
-        <li><Link to="/login">Log In</Link></li>
-        <li><Link to="/signup">Sign Up</Link></li>
+        <li><Link to="/login">
+              <Menu.Item>Log In</Menu.Item>
+            </Link>
+        </li>
+        <li><Link to="/signup">
+              <Menu.Item>Sign Up</Menu.Item>
+            </Link>
+        </li>
       </ul>
     )
 
@@ -26,12 +33,15 @@ class Navigation extends Component {
       </ul>
     );
 
-    return (
-      <header>
-        <nav>
-          {this.props.isAuthenticated ? userNav : mainNav}
-        </nav>
-      </header>
+    return (      
+        <Menu fixed='top' inverted>
+          <Container>
+            <Menu.Item as='a' header>
+              Friend App
+            </Menu.Item>
+            {this.props.isAuthenticated ? userNav : mainNav}
+          </Container>            
+        </Menu>      
     )
   }
 }
