@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
         isAuthenticating: true
       }
 
-    case types.AUTHENTICATION_SUCCESS:      
+    case types.AUTHENTICATION_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
@@ -40,7 +40,7 @@ export default (state = initialState, action) => {
         isAuthenticating: false,
         currentUser: {},
         token: null
-      };
+      }
 
     default:
       return state;

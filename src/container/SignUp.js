@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Container, Header } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { signup } from '../actions/authActions';
@@ -34,7 +34,8 @@ class Signup extends Component {
 
   render() {
     return(
-      <div>
+      <Container text style={{ marginTop: '7em' }}>
+        <Header as='h3'>Sign Up!</Header>
         <Form onSubmit={this.handleSubmit}>
           <Form.Field>
             <label>Name:</label>
@@ -74,7 +75,7 @@ class Signup extends Component {
           </Form.Field>
           <Button type='submit'>Submit</Button>
         </Form>
-      </div>
+      </Container>
     )
   }
 }

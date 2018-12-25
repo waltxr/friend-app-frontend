@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form, Container, Header } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { authenticate } from '../actions/authActions';
 
-class Login extends Component {
+class Login extends Component {  
   constructor(props){
-    super(props);
+    super(props)
     this.state = {
       email: "",
       password: "",
@@ -24,8 +24,6 @@ class Login extends Component {
   handleSubmit = (e) => {    
     e.preventDefault();
     if (this.props.authenticate(this.state)) {      
-      this.props.history.push(`/user_profile/`)
-      window.alert("You're Logged In!")
     } else {
       window.alert("Sorry, something went wrong. Please try logging in again.")
     }
@@ -33,7 +31,8 @@ class Login extends Component {
 
   render() {    
     return (
-      <div>
+      <Container text style={{ marginTop: '7em' }}>
+        <Header as='h3'>Log in:</Header>
         <Form onSubmit={this.handleSubmit}>
          <Form.Field>
            <label>Email:</label>
@@ -55,9 +54,10 @@ class Login extends Component {
          </Form.Field>
          <Button type='submit'>Submit</Button>
        </Form>
-     </div>
+     </Container>
     )
   }
+  
 }
 
 export default Login = withRouter(connect(null, {authenticate})(Login));

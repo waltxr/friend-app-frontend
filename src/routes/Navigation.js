@@ -14,36 +14,34 @@ class Navigation extends Component {
   render() {
     
     const mainNav = (
-      <ul>        
-        <li><Link to="/login">
-              <Menu.Item>Log In</Menu.Item>
-            </Link>
-        </li>
-        <li><Link to="/signup">
-              <Menu.Item>Sign Up</Menu.Item>
-            </Link>
-        </li>
-      </ul>
+      <Container>
+        <Menu.Item as='a' header>
+          <Link to="/login">Log In</Link>
+        </Menu.Item>
+        <Menu.Item as='a' header>
+          <Link to="/signup">Sign Up</Link>
+        </Menu.Item> 
+      </Container>
     )
-
-    const userNav = (
-      <ul>        
-        <li><Link to="/user_profile">Profile</Link></li>
-        <li onClick={(e) => this.handleLogout(e)}>Log Out</li>
-      </ul>
-    );
+    
+        const userNav = (
+      <Container>
+        <Menu.Item as='a' header>
+          <Link to='/user/'>Profile</Link>
+        </Menu.Item>
+        <Menu.Item as='a' header onClick={(e) => this.handleLogout(e)}>
+          Log Out
+        </Menu.Item>
+      </Container>
+    )
 
     return (      
         <Menu fixed='top' inverted>
-          <Container>
-            <Menu.Item as='a' header>
-              Friend App
-            </Menu.Item>
-            {this.props.isAuthenticated ? userNav : mainNav}
-          </Container>            
+            {this.props.isAuthenticated ? userNav : mainNav}          
         </Menu>      
     )
   }
+  
 }
 
 export default Navigation = withRouter(connect(null, {logout})(Navigation));

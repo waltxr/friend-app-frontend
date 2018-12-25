@@ -69,15 +69,38 @@ export const authenticate = (credentials) => {
     })
       .then(res => res.json())
       .then((response) => {
+        console.log(response);
+      })
+      .then((response) => {
           const token = response.auth_token;
           localStorage.setItem('token', token);
-          const user = response.user
-          localStorage.setItem('user', user)
-          dispatch(authSuccess(user, token))
+          return getUser(credentials)
+      })
+      .then((user) => {
+        console.log(localStorage.token);
+        console.log(user)
+          dispatch(authSuccess(user, localStorage.token))
       })
       .catch((errors) => {
           dispatch(authFailure(errors))
           localStorage.clear()
-      })
+      })      
   }
+}
+
+export const getUser = (credentials) => {
+  const request = new Request(`${API_URL}/users/find_user`, {
+    method: "POST",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.token}`,
+    }),
+    body: JSON.stringify({user: credentials})
+  })
+  return fetch(request)
+    .then(response => response.json())
+    .then(userJson => {return userJson})
+    .catch(error => {
+      return error
+    })
 }

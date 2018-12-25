@@ -9,7 +9,6 @@ import Navigation from '../routes/Navigation';
 
 class App extends Component {
   render() {
-    console.log(this.props);    
     const {isAuthenticated, user} = this.props
     
     const guestViews = (
@@ -22,8 +21,8 @@ class App extends Component {
 
     const userViews = (
       <div className="wrapper">
-        <Navigation isAuthenticated={isAuthenticated} />
-        <Route exact path="/user_profile" render={() => <UserProfile user={user}/>} />                
+        <Navigation isAuthenticated={isAuthenticated} user={user} />
+        <Route render={() => <UserProfile user={user}  />} />                
       </div>
     )
     
@@ -31,7 +30,7 @@ class App extends Component {
       <Router>
        {isAuthenticated ? userViews : guestViews}
      </Router>
-    );
+    )
   }
 }
 
