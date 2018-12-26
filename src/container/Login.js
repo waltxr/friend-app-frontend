@@ -10,7 +10,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-    };
+    }
   }
   
 
@@ -18,7 +18,7 @@ class Login extends Component {
     const {name, value} = e.target;        
     this.setState({
       [name]: value
-    });
+    })
   }
 
   handleSubmit = (e) => {    

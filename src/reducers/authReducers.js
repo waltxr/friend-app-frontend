@@ -5,7 +5,7 @@ const initialState = {
   isAuthenticating: false,
   currentUser: {},
   token: null,
-  errors: []
+  errors: {}
 }
 
 export default (state = initialState, action) => {
@@ -25,13 +25,14 @@ export default (state = initialState, action) => {
         token: action.token
       }
 
-    case types.AUTHENTICATION_FAILURE:
+    case types.AUTHENTICATION_FAILURE:        
       return {
+        ...state,
         isAuthenticated: false,
         isAuthenticating: false,
         currentUser: {},
         token: null,
-        errors: action.errors || []
+        errors: action.errors
       }
 
     case types.LOGOUT:

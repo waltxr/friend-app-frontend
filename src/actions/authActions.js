@@ -60,36 +60,40 @@ export const signup = (new_user) => {
 export const authenticate = (credentials) => {
   return dispatch => {
     dispatch(authRequest())
-    return fetch(`${API_URL}/auth/login`, {
+    return fetch(`${API_URL}/user_token`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(credentials)
-    })
+      body: JSON.stringify({auth: credentials})
+      })
       .then(res => res.json())
       .then((response) => {
-        console.log(response);
-      })
-      .then((response) => {
-          const token = response.auth_token;
-          localStorage.setItem('token', token);
-          return getUser(credentials)
+        console.log(response)
+        const token = response.jwt
+        localStorage.setItem('token', token)
+        console.log(localStorage.token)
+        return getUser(credentials)
       })
       .then((user) => {
-        console.log(localStorage.token);
-        console.log(user)
-          dispatch(authSuccess(user, localStorage.token))
+        debugger
+        dispatch(authSuccess(user, localStorage.token))
       })
       .catch((errors) => {
-          dispatch(authFailure(errors))
-          localStorage.clear()
-      })      
+        console.log(errors);
+        dispatch(authFailure(errors))
+        localStorage.clear()
+      })
   }
 }
 
+// .then((res) => {
+//   console.log(res.ok)
+// })
+
 export const getUser = (credentials) => {
-  const request = new Request(`${API_URL}/users/find_user`, {
+  debugger
+  const request = new Request(`${API_URL}/find_user`, {
     method: "POST",
     headers: new Headers({
       "Content-Type": "application/json",
