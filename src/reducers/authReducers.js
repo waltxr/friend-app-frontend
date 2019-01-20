@@ -25,14 +25,14 @@ export default (state = initialState, action) => {
         token: action.token
       }
 
-    case types.AUTHENTICATION_FAILURE:        
+    case types.AUTHENTICATION_FAILURE:
+      debugger
       return {
-        ...state,
         isAuthenticated: false,
         isAuthenticating: false,
         currentUser: {},
         token: null,
-        errors: action.errors
+        errors: action.errors.statusText
       }
 
     case types.LOGOUT:

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Container, Header } from 'semantic-ui-react'
+import { Button, Form, Container, Header, Message } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { authenticate } from '../actions/authActions';
@@ -53,6 +53,10 @@ class Login extends Component {
            />
          </Form.Field>
          <Button type='submit'>Submit</Button>
+         <Message negative>
+          <Message.Header>            
+          </Message.Header>
+         </Message>
        </Form>
      </Container>
     )

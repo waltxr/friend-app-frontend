@@ -32,9 +32,7 @@ export const logout = () => {
 }
 
 export const signup = (new_user) => {
-  console.log(new_user)
   return dispatch => {
-    console.log(dispatch);
     return fetch(`${API_URL}/signup`, {
       method: "POST",
       headers: {
@@ -67,29 +65,25 @@ export const authenticate = (credentials) => {
       },
       body: JSON.stringify({auth: credentials})
       })
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {throw res}
+        return res.json()
+      })
       .then((response) => {
-        console.log(response)
         const token = response.jwt
         localStorage.setItem('token', token)
-        console.log(localStorage.token)
         return getUser(credentials)
       })
       .then((user) => {
-        debugger
         dispatch(authSuccess(user, localStorage.token))
       })
       .catch((errors) => {
-        console.log(errors);
+        debugger
         dispatch(authFailure(errors))
         localStorage.clear()
       })
   }
 }
-
-// .then((res) => {
-//   console.log(res.ok)
-// })
 
 export const getUser = (credentials) => {
   debugger
