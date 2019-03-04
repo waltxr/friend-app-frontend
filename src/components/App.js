@@ -9,7 +9,7 @@ import Navigation from '../routes/Navigation';
 
 class App extends Component {
   render() {
-    const {isAuthenticated, user, errors} = this.props
+    const {isAuthenticated, user} = this.props
     console.log(this.props);
 
     const guestViews = (

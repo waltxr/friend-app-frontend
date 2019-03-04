@@ -75,7 +75,7 @@ class Login extends Component {
 
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) => {  
   return {
     errors: state.auth.errors
   }
