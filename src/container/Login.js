@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { authenticate } from '../actions/authActions';
 
-class Login extends Component {  
+class Login extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -12,32 +12,46 @@ class Login extends Component {
       password: "",
     }
   }
-  
 
-  handleChange = (e) => {            
-    const {name, value} = e.target;        
+  handleChange = (e) => {
+    const {name, value} = e.target;
     this.setState({
       [name]: value
     })
   }
 
-  handleSubmit = (e) => {    
-    e.preventDefault();
-    if (this.props.authenticate(this.state)) {      
-    } else {
-      window.alert("Sorry, something went wrong. Please try logging in again.")
+  errorHandling = () => {
+    if (this.props.errors) {
+      return (
+        <Message negative>
+         <Message.Header>
+           {this.props.errors}
+         </Message.Header>
+        </Message>
+      )
     }
   }
 
-  render() {    
+  handleSubmit = (e) => {
+    e.preventDefault();
+    if (this.state.email !== "" && this.state.password !== "") {
+      this.props.authenticate(this.state)
+    } else {
+      window.alert("Both email and password are required fields.")
+    }
+  }
+
+  render() {
+    console.log(this.props);
+    console.log(this.state);
     return (
       <Container text style={{ marginTop: '7em' }}>
         <Header as='h3'>Log in:</Header>
         <Form onSubmit={this.handleSubmit}>
          <Form.Field>
            <label>Email:</label>
-           <input 
-             placeholder='email...' 
+           <input
+             placeholder='email...'
              name='email'
              value={this.state.email}
              onChange={this.handleChange}
@@ -45,23 +59,26 @@ class Login extends Component {
          </Form.Field>
          <Form.Field>
            <label>Password:</label>
-           <input 
-             placeholder='password...' 
+           <input
+             placeholder='password...'
              name='password'
              value={this.state.password}
              onChange={this.handleChange}
            />
          </Form.Field>
          <Button type='submit'>Submit</Button>
-         <Message negative>
-          <Message.Header>            
-          </Message.Header>
-         </Message>
+          {this.errorHandling()}
        </Form>
      </Container>
     )
   }
-  
+
 }
 
-export default Login = withRouter(connect(null, {authenticate})(Login));
+const mapStateToProps = (state) => {  
+  return {
+    errors: state.auth.errors
+  }
+}
+
+export default Login = withRouter(connect(mapStateToProps, {authenticate})(Login));
