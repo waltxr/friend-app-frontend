@@ -58,19 +58,19 @@ export const signup = (new_user) => {
 export const authenticate = (credentials) => {
   return dispatch => {
     dispatch(authRequest())
-    return fetch(`${API_URL}/user_token`, {
+    return fetch(`${API_URL}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({auth: credentials})
+      body: JSON.stringify(credentials)
       })
       .then(res => {
         if (!res.ok) {throw res}
         return res.json()
       })
       .then((response) => {
-        const token = response.jwt
+        const token = response.auth_token
         localStorage.setItem('token', token)
         return getUser(credentials)
       })
@@ -78,26 +78,31 @@ export const authenticate = (credentials) => {
         dispatch(authSuccess(user, localStorage.token))
       })
       .catch((errors) => {
-        debugger
-        dispatch(authFailure(errors))
-        localStorage.clear()
+        return errors.json()
+        .then((res) => {
+          dispatch(authFailure(res))
+          localStorage.clear()
+        })
       })
   }
 }
 
 export const getUser = (credentials) => {
-  debugger
-  const request = new Request(`${API_URL}/find_user`, {
-    method: "POST",
+  const request = new Request(`${API_URL}/users/user`, {
+    method: "GET",
     headers: new Headers({
       "Content-Type": "application/json",
       "Authorization": `Bearer ${localStorage.token}`,
-    }),
-    body: JSON.stringify({user: credentials})
+    })
   })
   return fetch(request)
-    .then(response => response.json())
-    .then(userJson => {return userJson})
+    .then(response => {
+      return response.json()
+    })
+    .then(userJson => {
+      debugger
+      return userJson
+    })
     .catch(error => {
       return error
     })

@@ -9,23 +9,24 @@ import Navigation from '../routes/Navigation';
 
 class App extends Component {
   render() {
-    const {isAuthenticated, user} = this.props
-    
+    const {isAuthenticated, user, errors} = this.props
+    console.log(this.props);
+
     const guestViews = (
       <div id="landing-page" className="wrapper">
-        <Navigation isAuthenticated={isAuthenticated} />        
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />                
+        <Navigation isAuthenticated={isAuthenticated} />
+        <Route exact path="/login" component={Login}  />
+        <Route exact path="/signup" component={Signup} />
       </div>
     )
 
     const userViews = (
       <div className="wrapper">
         <Navigation isAuthenticated={isAuthenticated} user={user} />
-        <Route render={() => <UserProfile user={user}  />} />                
+        <Route render={() => <UserProfile user={user}  />} />
       </div>
     )
-    
+
     return (
       <Router>
        {isAuthenticated ? userViews : guestViews}
