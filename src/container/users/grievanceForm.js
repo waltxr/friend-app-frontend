@@ -1,14 +1,31 @@
 import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
+import { connect } from 'react-redux';
+import { fileGrievance } from '../../actions/userActions'
 
 class GrievanceForm extends Component {
+  constructor(props){
+    super(props)
+      this.state = {
+        receiver: {},
+        title: "",
+        description: ""
+    }
+  }
 
-  state = {}
+  handleChange = (e) => {
+    const {name, value} = e.target;
+    this.setState({
+      [name]: value
+    })
+  }
 
-  handleChange = (e, { value }) => this.setState({ value })
+  handleSubmit = (e) => {
+    e.preventDefault()
+    debugger
+  }
 
   options = (users) => {
-    debugger
     if (users.length === 0)
       return [{key: 0, text: '-', value: '-'}]
     else {
@@ -22,20 +39,19 @@ class GrievanceForm extends Component {
 
   render() {
     console.log(this.props);
-    const { value } = this.state
-    console.log(value);
+    console.log(this.state);
     return (
-      <Form>
+      <Form onSubmit={this.handleSubmit}>
         <span>File a Grievance:</span>
         <Form.Group widths='equal'>
-          <Form.Select fluid label='Receiver' placeholder='Receiver' options={this.options(this.props.users.users)} />
+          <Form.Select fluid onChange={this.handleChange} label='Receiver' name='receiver' placeholder='Receiver' value={this.state.receiver} options={this.options(this.props.users.users)} onChange={this.handleChange} />
         </Form.Group>
-        <Form.Input fluid label='Title' placeholder='Title' onChange={this.handleChange}/>
-        <Form.TextArea label='Description' placeholder='Describe the grievance you have...'  onChange={this.handleChange}/>
+        <Form.Input fluid label='Title' placeholder='Title' name='title' onChange={this.handleChange} value={this.state.title}/>
+        <Form.TextArea label='Description' name='description' placeholder='Describe the grievance you have...'  value={this.state.description} onChange={this.handleChange}/>
         <Form.Button>Submit</Form.Button>
       </Form>
     )
   }
 }
 
-export default GrievanceForm
+export default connect(null, { fileGrievance })(GrievanceForm)
