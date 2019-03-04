@@ -7,6 +7,19 @@ class GrievanceForm extends Component {
 
   handleChange = (e, { value }) => this.setState({ value })
 
+  options = (users) => {
+    debugger
+    if (users.length === 0)
+      return [{key: 0, text: '-', value: '-'}]
+    else {
+      let opts = []
+      users.forEach((user) => {
+        opts.push({ key: user.id, text: user.name, value: user.id })
+      })
+      return opts
+    }
+  }
+
   render() {
     console.log(this.props);
     const { value } = this.state
@@ -15,9 +28,9 @@ class GrievanceForm extends Component {
       <Form>
         <span>File a Grievance:</span>
         <Form.Group widths='equal'>
-          <Form.Select fluid label='Receiver' placeholder='Receiver' onChange={this.handleChange}/>
+          <Form.Select fluid label='Receiver' placeholder='Receiver' options={this.options(this.props.users.users)} />
         </Form.Group>
-        <Form.Input fluid label='Title' placeholder='Title'  onChange={this.handleChange}/>
+        <Form.Input fluid label='Title' placeholder='Title' onChange={this.handleChange}/>
         <Form.TextArea label='Description' placeholder='Describe the grievance you have...'  onChange={this.handleChange}/>
         <Form.Button>Submit</Form.Button>
       </Form>
