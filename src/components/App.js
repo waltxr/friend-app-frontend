@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux'
 import './App.css';
 import Navigation from '../routes/Navigation';
+import SideMenu from '../container/sideMenu'
 
 class App extends Component {
   render() {

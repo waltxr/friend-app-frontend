@@ -12,18 +12,18 @@ class Navigation extends Component {
   }
 
   render() {
-    
+
     const mainNav = (
       <Container>
-        <Menu.Item as='a' header>
+        <Menu.Item header>
           <Link to="/login">Log In</Link>
         </Menu.Item>
-        <Menu.Item as='a' header>
+        <Menu.Item header>
           <Link to="/signup">Sign Up</Link>
-        </Menu.Item> 
+        </Menu.Item>
       </Container>
     )
-    
+
         const userNav = (
       <Container>
         <Menu.Item as='a' header>
@@ -35,13 +35,13 @@ class Navigation extends Component {
       </Container>
     )
 
-    return (      
+    return (
         <Menu fixed='top' inverted>
-            {this.props.isAuthenticated ? userNav : mainNav}          
-        </Menu>      
+            {this.props.isAuthenticated ? userNav : mainNav}
+        </Menu>
     )
   }
-  
+
 }
 
 export default Navigation = withRouter(connect(null, {logout})(Navigation));
