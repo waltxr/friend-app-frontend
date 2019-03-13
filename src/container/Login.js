@@ -34,7 +34,7 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.email !== "" && this.state.password !== "") {
+    if (this.state.email !== "" && this.state.password !== "") {      
       this.props.authenticate(this.state)
     } else {
       window.alert("Both email and password are required fields.")
@@ -75,7 +75,7 @@ class Login extends Component {
 
 }
 
-const mapStateToProps = (state) => {  
+const mapStateToProps = (state) => {
   return {
     errors: state.auth.errors
   }

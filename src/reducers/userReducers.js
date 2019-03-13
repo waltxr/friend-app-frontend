@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes';
 
 const initialState = {
-  users: []
+  list: []
 }
 
 export default (state = initialState, action) => {
@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
     case types.REQUEST_USERS:
       return {
         ...state,
-        users: action.users
+        list: action.users
       }
 
       case types.FILE_GRIEVANCE:

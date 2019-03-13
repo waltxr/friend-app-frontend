@@ -10,10 +10,13 @@ import { getUsers } from '../../actions/userActions'
 
 class UserProfile extends Component {
 
+  componentWillMount() {    
+    this.props.getUsers()
+  }
+
   componentDidMount() {
-    const {user, history, getUsers, users} = this.props
+    const {user, history} = this.props
     history.push(user.name.toLowerCase()+'-'+user.id)
-    getUsers()
   }
 
   render() {
@@ -31,7 +34,7 @@ class UserProfile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.users
+    users: state.users.list
   }
 }
 

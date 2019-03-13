@@ -77,7 +77,7 @@ export const authenticate = (credentials) => {
       .then((user) => {
         dispatch(authSuccess(user, localStorage.token))
       })
-      .catch((errors) => {        
+      .catch((errors) => {
         return errors.json()
         .then((res) => {
           dispatch(authFailure(res))
