@@ -32,6 +32,7 @@ export const getUsers = () => {
 }
 
 export const fileGrievance = (grievance) => {
+  debugger
   return (dispatch) => {
     return fetch(`${API_URL}/grievances`, {
       method: "POST",

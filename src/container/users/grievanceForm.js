@@ -7,7 +7,6 @@ class GrievanceForm extends Component {
   constructor(props){
     super(props)
       this.state = {
-        receiver: {},
         title: "",
         description: ""
     }
@@ -22,26 +21,25 @@ class GrievanceForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    debugger
+    this.props.fileGrievance(this.state)
   }
 
   handleUserChange = (e, selected) => {
     console.log(selected.value);
     const {name, value} = selected
     this.setState({
-      [name]: value
+      [name]: [value]
     })
   }
 
 
   render() {
     console.log(this.state);
-    
     const userOptions = this.props.users.map( user => {
       return {
         key: user.id,
         text: user.name,
-        value: user
+        value: user.id
       }
     })
 
@@ -50,7 +48,7 @@ class GrievanceForm extends Component {
       <Form onSubmit={this.handleSubmit}>
         <span>File a Grievance:</span>
         <Form.Group widths='equal'>
-          <Form.Select fluid onChange={this.handleUserChange} label='Receiver' name='receiver' placeholder='Receiver' options={userOptions}/>
+          <Form.Select fluid onChange={this.handleUserChange} label='Receiver' name='receiver_ids' placeholder='Receiver' options={userOptions}/>
         </Form.Group>
         <Form.Input fluid label='Title' placeholder='Title' name='title' onChange={this.handleChange} value={this.state.title}/>
         <Form.TextArea label='Description' name='description' placeholder='Describe the grievance you have...'  value={this.state.description} onChange={this.handleChange}/>
