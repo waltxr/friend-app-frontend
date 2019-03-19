@@ -16,6 +16,12 @@ const addGrievance = (grievance) => {
   }
 }
 
+const resetGrievanceForm = () => {
+  return {
+    type: types.RESET_FORM
+  }
+}
+
 export const getUsers = () => {
   return (dispatch) => {
     return fetch(`${API_URL}/users`, {
@@ -31,8 +37,7 @@ export const getUsers = () => {
   };
 }
 
-export const fileGrievance = (grievance) => {
-  debugger
+export const fileGrievance = (grievance) => {  
   return (dispatch) => {
     return fetch(`${API_URL}/grievances`, {
       method: "POST",
@@ -45,6 +50,7 @@ export const fileGrievance = (grievance) => {
     .then(response => response.json())
     .then(grievance => {
       dispatch(addGrievance(grievance))
+      dispatch(resetGrievanceForm())
     })
     .catch(error => console.log(error))
   }

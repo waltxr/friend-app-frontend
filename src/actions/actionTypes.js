@@ -6,3 +6,5 @@ export const LOGOUT = "LOGOUT"
 export const REQUEST_USERS = "REQUEST_USERS"
 
 export const FILE_GRIEVANCE = "FILE_GRIEVANCE"
+
+export const RESET_FORM = "RESET_FORM"

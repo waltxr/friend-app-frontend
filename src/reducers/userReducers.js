@@ -12,9 +12,6 @@ export default (state = initialState, action) => {
         list: action.users
       }
 
-      case types.FILE_GRIEVANCE:
-        return state.concat(action.grievance)
-
     default:
       return state;
 
