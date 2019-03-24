@@ -24,7 +24,7 @@ class App extends Component {
     const userViews = (
       <div className="wrapper">
         <Navigation isAuthenticated={isAuthenticated} user={user} />
-        <Route render={() => <UserProfile user={user}  />} />
+        <Route render={() => <UserProfile user={user} filed_grievances={user.filed_grievances} />} />
       </div>
     )
 
@@ -36,10 +36,11 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {  
+const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
-    user: state.auth.currentUser
+    user: state.auth.currentUser,
+    filed_grievances: state.auth.currentUser.filed_grievances
   }
 }
 

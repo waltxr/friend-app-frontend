@@ -10,7 +10,7 @@ import { getUsers } from '../../actions/userActions'
 
 class UserProfile extends Component {
 
-  componentWillMount() {    
+  componentWillMount() {
     this.props.getUsers()
   }
 
@@ -24,8 +24,8 @@ class UserProfile extends Component {
     return(
       <Container text style={{ marginTop: '7em' }}>
         {this.props.user.name}
-        <GrievanceList user={this.props.user}/>
-        <GrievanceForm users={this.props.users}/>
+        <GrievanceList user={this.props.user} filed_grievances={this.props.filed_grievances}/>
+        <GrievanceForm users={this.props.users} />
       </Container>
     )
   }
