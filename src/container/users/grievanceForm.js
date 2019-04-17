@@ -24,7 +24,7 @@ class GrievanceForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.fileGrievance(this.state)
+    this.props.fileGrievance(this.state)    
   }
 
   handleUserChange = (e, selected) => {
@@ -54,7 +54,7 @@ class GrievanceForm extends Component {
         </Form.Group>
         <Form.Input fluid label='Title' placeholder='Title' name='title' onChange={this.handleChange} value={this.state.title}/>
         <Form.TextArea label='Description' name='description' placeholder='Describe the grievance you have...'  value={this.state.description} onChange={this.handleChange}/>
-        <Form.Button>Submit</Form.Button>
+        <Form.Button>File</Form.Button>
       </Form>
     )
   }

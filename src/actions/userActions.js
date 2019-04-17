@@ -12,7 +12,6 @@ const setUsers = (users) => {
 const addGrievance = (grievance) => {
   return {
     type: types.FILE_GRIEVANCE,
-    grievance
   }
 }
 
@@ -37,7 +36,7 @@ export const getUsers = () => {
   };
 }
 
-export const fileGrievance = (grievance) => {  
+export const fileGrievance = (grievance) => {
   return (dispatch) => {
     return fetch(`${API_URL}/grievances`, {
       method: "POST",
@@ -49,6 +48,7 @@ export const fileGrievance = (grievance) => {
     })
     .then(response => response.json())
     .then(grievance => {
+      debugger
       dispatch(addGrievance(grievance))
       dispatch(resetGrievanceForm())
     })

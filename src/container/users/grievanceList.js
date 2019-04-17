@@ -3,7 +3,7 @@ import Grievance from './Grievance'
 import { Item } from 'semantic-ui-react'
 
 const GrievanceList = (props) => {
-  const filedGrievances = props.filed_grievances
+  const filedGrievances = props.filed_grievances.reverse()
   .map((grievance) => <Grievance key={grievance.id} id={grievance.id} title={grievance.title} description={grievance.description} receivers={grievance.receivers}/>)
   return (
     <Item.Group>

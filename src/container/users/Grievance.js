@@ -3,7 +3,6 @@ import { Item, Label, Button } from 'semantic-ui-react'
 import ReceiverList from './receiverList'
 
 const Grievance = (props) => {
-  console.log(props);
   return (
     <Item>
       <Item.Content>
