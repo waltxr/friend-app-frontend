@@ -10,7 +10,7 @@ import SideMenu from '../container/sideMenu'
 
 class App extends Component {
   render() {
-    const {isAuthenticated, user, filed_grievances} = this.props
+    const {isAuthenticated, user} = this.props
     console.log(this.props);
 
     const guestViews = (
@@ -24,7 +24,7 @@ class App extends Component {
     const userViews = (
       <div className="wrapper">
         <Navigation isAuthenticated={isAuthenticated} user={user} />
-        <Route render={() => <UserProfile user={user} filed_grievances={filed_grievances} />} />
+        <Route render={() => <UserProfile user={user} filed_grievances={user.filed_grievances} />} />
       </div>
     )
 
@@ -37,10 +37,11 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.currentUser,
-    filed_grievances: state.auth.currentUser.filed_grievances
+    created_grievances: state.created_grievances
   }
 }
 

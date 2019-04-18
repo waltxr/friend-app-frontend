@@ -12,6 +12,7 @@ const setUsers = (users) => {
 const addGrievance = (grievance) => {
   return {
     type: types.FILE_GRIEVANCE,
+    grievance: grievance
   }
 }
 
@@ -48,7 +49,6 @@ export const fileGrievance = (grievance) => {
     })
     .then(response => response.json())
     .then(grievance => {
-      debugger
       dispatch(addGrievance(grievance))
       dispatch(resetGrievanceForm())
     })

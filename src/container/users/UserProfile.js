@@ -20,12 +20,16 @@ class UserProfile extends Component {
   }
 
   render() {
+    const createdGrievances = (
+      <GrievanceList user={this.props.user} grievances={this.props.created_grievances}/>
+    )
     console.log(this.props);
     return(
       <Container text style={{ marginTop: '7em' }}>
         {this.props.user.name}
         <GrievanceForm users={this.props.users} />
-        <GrievanceList user={this.props.user} filed_grievances={this.props.filed_grievances}/>
+        {this.props.created_grievances.length > 0 ? createdGrievances : <div />}
+        <GrievanceList user={this.props.user} grievances={this.props.filed_grievances}/>
       </Container>
     )
   }
@@ -33,8 +37,10 @@ class UserProfile extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    users: state.users.list
+    users: state.users.list,
+    created_grievances: state.created_grievances
   }
 }
 

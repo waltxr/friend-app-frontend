@@ -24,20 +24,17 @@ class GrievanceForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.fileGrievance(this.state)    
+    this.props.fileGrievance(this.state)
   }
 
   handleUserChange = (e, selected) => {
-    console.log(selected.value);
-    console.log(selected.name);
     const {name, value} = selected
     this.setState({
       [name]: value
     })
   }
 
-  render() {
-    console.log(this.state);
+  render() {    
     const userOptions = this.props.users.map( user => {
       return {
         key: user.id,

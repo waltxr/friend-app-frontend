@@ -6,7 +6,7 @@ import grievanceReducers from './grievanceReducers'
 const rootReducer = combineReducers({
   auth: authReducers,
   users: userReducers,
-  filed_grievances: grievanceReducers
+  created_grievances: grievanceReducers
 });
 
 export default rootReducer;
