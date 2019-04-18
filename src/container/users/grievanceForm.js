@@ -33,7 +33,6 @@ class GrievanceForm extends Component {
   }
 
   handleUserChange = (e, selected) => {
-    debugger
     const {name, value} = selected
     this.setState({
       [name]: value
@@ -53,7 +52,7 @@ class GrievanceForm extends Component {
       <Form onSubmit={this.handleSubmit}>
         <span>File a Grievance:</span>
         <Form.Group widths='equal'>
-          <Dropdown placeholder='Receiver' fluid multiple search selection options={userOptions} label='Receiver' onChange={this.handleUserChange} name='receiver_ids' placeholder='Receiver' />
+          <Form.Dropdown placeholder='Receiver' fluid multiple search selection options={userOptions} label='Receiver' onChange={this.handleUserChange} name='receiver_ids' placeholder='Receiver' value={this.state.receiver_ids} />
           <Form.Input fluid label='Title' placeholder='Title' name='title' onChange={this.handleChange} value={this.state.title}/>
           <Form.TextArea label='Description' name='description' placeholder='Describe the grievance you have...'  value={this.state.description} onChange={this.handleChange}/>
           <Form.Button>File</Form.Button>
