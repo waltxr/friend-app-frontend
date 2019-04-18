@@ -25,16 +25,22 @@ class GrievanceForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.fileGrievance(this.state)
+    this.setState({
+      title: "",
+      description: "",
+      receiver_ids: []
+    })
   }
 
   handleUserChange = (e, selected) => {
+    debugger
     const {name, value} = selected
     this.setState({
       [name]: value
     })
   }
 
-  render() {    
+  render() {
     const userOptions = this.props.users.map( user => {
       return {
         key: user.id,
@@ -47,11 +53,11 @@ class GrievanceForm extends Component {
       <Form onSubmit={this.handleSubmit}>
         <span>File a Grievance:</span>
         <Form.Group widths='equal'>
-          <Dropdown placeholder='Receiver' fluid multiple search selection options={userOptions} label='Receiver' onChange={this.handleUserChange} name='receiver_ids' placeholder='Receiver'/>
+          <Dropdown placeholder='Receiver' fluid multiple search selection options={userOptions} label='Receiver' onChange={this.handleUserChange} name='receiver_ids' placeholder='Receiver' />
+          <Form.Input fluid label='Title' placeholder='Title' name='title' onChange={this.handleChange} value={this.state.title}/>
+          <Form.TextArea label='Description' name='description' placeholder='Describe the grievance you have...'  value={this.state.description} onChange={this.handleChange}/>
+          <Form.Button>File</Form.Button>
         </Form.Group>
-        <Form.Input fluid label='Title' placeholder='Title' name='title' onChange={this.handleChange} value={this.state.title}/>
-        <Form.TextArea label='Description' name='description' placeholder='Describe the grievance you have...'  value={this.state.description} onChange={this.handleChange}/>
-        <Form.Button>File</Form.Button>
       </Form>
     )
   }
