@@ -51,12 +51,16 @@ class GrievanceForm extends Component {
     return (
       <Form onSubmit={this.handleSubmit}>
         <span>File a Grievance:</span>
-        <Form.Group widths='equal'>
+        <Form.Field>
           <Form.Dropdown placeholder='Receiver' fluid multiple search selection options={userOptions} label='Receiver' onChange={this.handleUserChange} name='receiver_ids' placeholder='Receiver' value={this.state.receiver_ids} />
+        </Form.Field>
+        <Form.Field>
           <Form.Input fluid label='Title' placeholder='Title' name='title' onChange={this.handleChange} value={this.state.title}/>
+        </Form.Field>
+        <Form.Field>
           <Form.TextArea label='Description' name='description' placeholder='Describe the grievance you have...'  value={this.state.description} onChange={this.handleChange}/>
+        </Form.Field>
           <Form.Button>File</Form.Button>
-        </Form.Group>
       </Form>
     )
   }

@@ -1,10 +1,12 @@
 import React from 'react'
-import { Item, Label, Button } from 'semantic-ui-react'
+import { Image, Item, Label, Button } from 'semantic-ui-react'
 import ReceiverList from './receiverList'
+import image from '../../images/image.png'
 
 const Grievance = (props) => {
   return (
     <Item>
+      <Item.Image src={image} />
       <Item.Content>
         <Item.Header as='a'>{props.title}</Item.Header>
         <Item.Meta>
