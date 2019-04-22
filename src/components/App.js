@@ -11,7 +11,6 @@ import SideMenu from '../container/sideMenu'
 class App extends Component {
   render() {
     const {isAuthenticated, user} = this.props
-    console.log(this.props);
 
     const guestViews = (
       <div id="landing-page" className="wrapper">

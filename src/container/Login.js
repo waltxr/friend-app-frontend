@@ -41,9 +41,7 @@ class Login extends Component {
     }
   }
 
-  render() {
-    console.log(this.props);
-    console.log(this.state);
+  render() {    
     return (
       <Container text style={{ marginTop: '7em' }}>
         <Header as='h3'>Log in:</Header>
