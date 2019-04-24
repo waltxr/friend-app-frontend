@@ -8,6 +8,8 @@ import './App.css';
 import Navigation from '../routes/Navigation';
 import SideMenu from '../container/sideMenu'
 
+// figure out state tree for nested objects
+
 class App extends Component {
   render() {
     const {isAuthenticated, user} = this.props
