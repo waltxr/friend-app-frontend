@@ -1,3 +1,5 @@
+import { normalize } from 'normalizr'
+import {userSchema} from './schema'
 import { API_URL } from './apiUrl'
 import * as types from './actionTypes'
 
@@ -100,6 +102,10 @@ export const getUser = (credentials) => {
       return response.json()
     })
     .then(userJson => {
+      console.log("original Data");
+      console.log(userJson);
+      console.log("normalized Data");
+      console.log(normalize(userJson, userSchema));
       return userJson
     })
     .catch(error => {
