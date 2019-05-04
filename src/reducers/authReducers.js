@@ -4,6 +4,8 @@ const initialState = {
   isAuthenticated: false,
   isAuthenticating: false,
   currentUser: {},
+  userComments: [],
+  userGrievances: [],
   token: null,
   errors: null
 }
@@ -21,11 +23,13 @@ export default (state = initialState, action) => {
         ...state,
         isAuthenticated: true,
         isAuthenticating: false,
-        currentUser: action.user,
+        currentUser: action.user.entities.user,
+        userComments: action.user.entities.comments,
+        userGrievances: action.user.entities.grievances,
         token: action.token
       }
 
-    case types.AUTHENTICATION_FAILURE:      
+    case types.AUTHENTICATION_FAILURE:
       return {
         isAuthenticated: false,
         isAuthenticating: false,

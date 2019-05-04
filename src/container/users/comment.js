@@ -3,8 +3,8 @@ import { Button, Comment, Form, Header } from 'semantic-ui-react'
 import ReceiverList from './receiverList'
 import image from '../../images/image.png'
 
-const ItemComment = (props) => {
-  return (    
+const ItemComment = (props) => {  
+  return (
     <Comment>
       <Comment.Content>
         <Comment.Author as='a'>{props.user.name}</Comment.Author>

@@ -9,10 +9,10 @@ const authRequest = () => {
   }
 }
 
-const authSuccess = (user, token) => {
+const authSuccess = (userObject, token) => {
   return {
     type: types.AUTHENTICATION_SUCCESS,
-    user: user,
+    user: userObject,
     token: token
   }
 }
@@ -76,10 +76,10 @@ export const authenticate = (credentials) => {
         localStorage.setItem('token', token)
         return getUser(credentials)
       })
-      .then((user) => {
-        dispatch(authSuccess(user, localStorage.token))
+      .then((userObject) => {
+        dispatch(authSuccess(userObject, localStorage.token))
       })
-      .catch((errors) => {
+      .catch((errors) => {        
         return errors.json()
         .then((res) => {
           dispatch(authFailure(res))
@@ -106,7 +106,7 @@ export const getUser = (credentials) => {
       console.log(userJson);
       console.log("normalized Data");
       console.log(normalize(userJson, userSchema));
-      return userJson
+      return normalize(userJson, userSchema)
     })
     .catch(error => {
       return error

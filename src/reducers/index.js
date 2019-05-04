@@ -3,7 +3,7 @@ import authReducers from './authReducers';
 import userReducers from './userReducers';
 import grievanceReducers from './grievanceReducers'
 
-const rootReducer = combineReducers({
+const rootReducer = combineReducers({  
   auth: authReducers,
   users: userReducers,
   created_grievances: grievanceReducers

@@ -15,21 +15,17 @@ class UserProfile extends Component {
   }
 
   componentDidMount() {
-    const {user, history} = this.props
-    history.push(user.name.toLowerCase()+'-'+user.id)
+    const {currentUser, history} = this.props    
+    history.push(currentUser.name.toLowerCase()+'-'+currentUser.id)
   }
 
   render() {
-    const createdGrievances = (
-      <GrievanceList user={this.props.user} grievances={this.props.created_grievances}/>
-    )
     console.log(this.props);
     return(
       <Container text style={{ marginTop: '7em' }}>
-        {this.props.user.name}
+        {this.props.currentUser.name}
         <GrievanceForm users={this.props.users} />
-        {this.props.created_grievances.length > 0 ? createdGrievances : <div />}
-        <GrievanceList user={this.props.user} grievances={this.props.filed_grievances}/>
+        <GrievanceList user={this.props.user} grievances={this.props.currentUserGrievances}/>
       </Container>
     )
   }
@@ -37,8 +33,10 @@ class UserProfile extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
+    currentUser: state.auth.currentUser[1],
+    currentUserComments: state.auth.userComments,
+    currentUserGrievances: state.auth.userGrievances,
     users: state.users.list,
     created_grievances: state.created_grievances
   }

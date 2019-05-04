@@ -25,7 +25,7 @@ class App extends Component {
     const userViews = (
       <div className="wrapper">
         <Navigation isAuthenticated={isAuthenticated} user={user} />
-        <Route render={() => <UserProfile user={user} filed_grievances={user.filed_grievances} />} />
+        <Route render={() => <UserProfile  />} />
       </div>
     )
 
