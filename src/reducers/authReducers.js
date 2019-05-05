@@ -1,4 +1,5 @@
 import * as types from '../actions/actionTypes';
+import merge from 'lodash/merge'
 
 const initialState = {
   isAuthenticated: false,
@@ -46,6 +47,13 @@ export default (state = initialState, action) => {
         token: null
       }
 
+    case types.FILE_GRIEVANCE:
+      return {
+        ...state,
+          userGrievances: merge({}, state.userGrievances, action.grievance.entities.grievances)
+      }
+    case types.RESET_FORM:      
+      return state;
     default:
       return state;
   }

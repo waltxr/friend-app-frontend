@@ -1,5 +1,6 @@
 import { normalize } from 'normalizr'
 import {userSchema} from './schema'
+import {grievanceSchema} from './grievanceSchema'
 import { API_URL } from './apiUrl'
 import * as types from './actionTypes'
 
@@ -21,6 +22,19 @@ const authFailure = (errors) => {
   return {
     type: types.AUTHENTICATION_FAILURE,
     errors: errors
+  }
+}
+
+const addGrievance = (grievance) => {
+  return {
+    type: types.FILE_GRIEVANCE,
+    grievance: grievance
+  }
+}
+
+const resetGrievanceForm = () => {
+  return {
+    type: types.RESET_FORM
   }
 }
 
@@ -79,7 +93,7 @@ export const authenticate = (credentials) => {
       .then((userObject) => {
         dispatch(authSuccess(userObject, localStorage.token))
       })
-      .catch((errors) => {        
+      .catch((errors) => {
         return errors.json()
         .then((res) => {
           dispatch(authFailure(res))
@@ -111,4 +125,24 @@ export const getUser = (credentials) => {
     .catch(error => {
       return error
     })
+}
+
+
+export const fileGrievance = (grievance) => {
+  return (dispatch) => {
+    return fetch(`${API_URL}/grievances`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`,
+      },
+      body: JSON.stringify({grievance: grievance})
+    })
+    .then(response => response.json())
+    .then(grievance => {      
+      dispatch(addGrievance(normalize(grievance, grievanceSchema)))
+      dispatch(resetGrievanceForm())
+    })
+    .catch(error => console.log(error))
+  }
 }

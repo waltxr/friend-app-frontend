@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Header, Dropdown } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { fileGrievance } from '../../actions/userActions'
+import { fileGrievance } from '../../actions/authActions'
 import _ from 'lodash'
 import faker from 'faker'
 

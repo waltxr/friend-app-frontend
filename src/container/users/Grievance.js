@@ -12,8 +12,8 @@ const Grievance = (props) => {
 
   const commentList = []
 
-  const renderCommentList = (comments) => {
-    if (comments.length > 0) {      
+  const renderCommentList = (comments) => {    
+    if (comments.length > 0) {
       comments.map((comment_id) => {
         commentList.push(props.userComments[comment_id])
       })

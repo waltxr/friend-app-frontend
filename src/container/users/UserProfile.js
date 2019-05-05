@@ -15,7 +15,7 @@ class UserProfile extends Component {
   }
 
   componentDidMount() {
-    const {currentUser, history} = this.props    
+    const {currentUser, history} = this.props
     history.push(currentUser.name.toLowerCase()+'-'+currentUser.id)
   }
 
@@ -25,7 +25,7 @@ class UserProfile extends Component {
       <Container text style={{ marginTop: '7em' }}>
         {this.props.currentUser.name}
         <GrievanceForm users={this.props.users} />
-        <GrievanceList user={this.props.user} grievances={this.props.currentUserGrievances}/>
+        <GrievanceList user={this.props.user} />
       </Container>
     )
   }
