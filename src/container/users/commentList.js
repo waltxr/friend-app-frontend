@@ -1,33 +1,47 @@
 import React, { Component } from 'react'
 import ItemComment from './comment'
-import { Item, Comment } from 'semantic-ui-react'
+import { Item, Comment, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 
 class CommentList extends Component {
 
-  // .map(comment => <ItemComment key={comment.id} id={comment.id} body={comment.body} user={comment.user}/>)
+  constructor(props){
+    super(props)
+      this.state = {
+        limit: 3,
+        showMore: true
+    }
+  }
 
-  // renderComments = (commentList) => {
-  //   if (commentList.length() > 0) {
-  //     debugger
-  //     return commentList.map(comment => <ItemComment key={comment.id} id={comment.id} body={comment.body} user={comment.user}/>)
-  //   } else {
-  //     debugger
-  //     return null
-  //   }
-  // }
+  showMore = (commentList) => {
+    this.setState({
+      limit: commentList.length,
+      showMore: false
+    })
+  }
+
+  renderShowMore = () => {
+    if (!this.state.showMore) {
+      return null
+    } else {
+      return <Button onClick={this.showMore} size='mini'>Show More...</Button>
+    }
+  }
 
   render() {
 
     const commentList = Object.keys(this.props.comments)
     .map(key => this.props.comments[key])
     .filter(comment => comment.commentable_id === this.props.item_id)
+    .slice(0,this.state.limit)
     .map(comment => <ItemComment key={comment.id} id={comment.id} body={comment.body} user={comment.user}/>)
+
 
     return (
       <Comment.Group>
         { commentList }
+        {this.renderShowMore()}
       </Comment.Group>
     )
 
@@ -35,7 +49,7 @@ class CommentList extends Component {
   }
 }
 
-const mapStateToProps = state => {  
+const mapStateToProps = state => {
   return {
     comments: state.app.userComments
   }

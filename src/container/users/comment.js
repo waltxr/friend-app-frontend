@@ -3,13 +3,14 @@ import { Button, Comment, Form, Header } from 'semantic-ui-react'
 import ReceiverList from './receiverList'
 import image from '../../images/image.png'
 
-const ItemComment = (props) => {    
+const ItemComment = (props) => {
+  // Today at 5:42PM  
   return (
     <Comment>
       <Comment.Content>
         <Comment.Author as='a'>{props.user.name}</Comment.Author>
         <Comment.Metadata>
-          <div>Today at 5:42PM</div>
+          <div>{}</div>
         </Comment.Metadata>
         <Comment.Text>{props.body}</Comment.Text>
         <Comment.Actions>
