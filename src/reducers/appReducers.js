@@ -5,8 +5,8 @@ const initialState = {
   isAuthenticated: false,
   isAuthenticating: false,
   currentUser: {},
-  userComments: [],
-  userGrievances: [],
+  userComments: {},
+  userGrievances: {},
   token: null,
   errors: null
 }
@@ -50,9 +50,16 @@ export default (state = initialState, action) => {
     case types.FILE_GRIEVANCE:
       return {
         ...state,
-          userGrievances: merge({}, state.userGrievances, action.grievance.entities.grievances)
+        userGrievances: merge({}, state.userGrievances, action.grievance.entities.grievances)
       }
-    case types.RESET_FORM:      
+
+    case types.ADD_COMMENT:    
+      return {
+        ...state,
+        userComments: merge({}, state.userComments, action.comment.entities.comments)
+      }
+
+    case types.RESET_FORM:
       return state;
     default:
       return state;

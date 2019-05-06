@@ -40,8 +40,8 @@ class App extends Component {
 const mapStateToProps = (state) => {
   console.log(state);
   return {
-    isAuthenticated: state.auth.isAuthenticated,
-    user: state.auth.currentUser,
+    isAuthenticated: state.app.isAuthenticated,
+    user: state.app.currentUser,
     created_grievances: state.created_grievances
   }
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Container, Header, Message } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { authenticate } from '../actions/authActions';
+import { authenticate } from '../actions/appActions';
 
 class Login extends Component {
   constructor(props){
@@ -41,7 +41,7 @@ class Login extends Component {
     }
   }
 
-  render() {    
+  render() {
     return (
       <Container text style={{ marginTop: '7em' }}>
         <Header as='h3'>Log in:</Header>
@@ -76,7 +76,7 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    errors: state.auth.errors
+    errors: state.app.errors
   }
 }
 

@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux';
-import authReducers from './authReducers';
+import appReducers from './appReducers';
 import userReducers from './userReducers';
-import grievanceReducers from './grievanceReducers'
 
-const rootReducer = combineReducers({  
-  auth: authReducers,
+const rootReducer = combineReducers({
+  app: appReducers,
   users: userReducers,
-  created_grievances: grievanceReducers
 });
 
 export default rootReducer;

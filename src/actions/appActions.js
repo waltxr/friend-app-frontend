@@ -1,6 +1,7 @@
 import { normalize } from 'normalizr'
 import {userSchema} from './schema'
 import {grievanceSchema} from './grievanceSchema'
+import {commentSchema} from './commentSchema'
 import { API_URL } from './apiUrl'
 import * as types from './actionTypes'
 
@@ -32,9 +33,16 @@ const addGrievance = (grievance) => {
   }
 }
 
-const resetGrievanceForm = () => {
+const resetForm = () => {
   return {
     type: types.RESET_FORM
+  }
+}
+
+const addComment = (comment) => {
+  return {
+    type: types.ADD_COMMENT,
+    comment: comment
   }
 }
 
@@ -116,10 +124,6 @@ export const getUser = (credentials) => {
       return response.json()
     })
     .then(userJson => {
-      console.log("original Data");
-      console.log(userJson);
-      console.log("normalized Data");
-      console.log(normalize(userJson, userSchema));
       return normalize(userJson, userSchema)
     })
     .catch(error => {
@@ -139,10 +143,28 @@ export const fileGrievance = (grievance) => {
       body: JSON.stringify({grievance: grievance})
     })
     .then(response => response.json())
-    .then(grievance => {      
+    .then(grievance => {
       dispatch(addGrievance(normalize(grievance, grievanceSchema)))
-      dispatch(resetGrievanceForm())
+      dispatch(resetForm())
     })
     .catch(error => console.log(error))
+  }
+}
+
+export const postGrievanceComment = (comment, grievance) => {
+  return (dispatch) => {
+    return fetch(`${API_URL}/grievances/${grievance.id}/comments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`,
+      },
+      body: JSON.stringify({comment: comment})
+    })
+    .then(response => response.json())
+    .then(comment => {      
+      dispatch(addComment(normalize(comment, commentSchema)))
+      dispatch(resetForm())
+    })
   }
 }

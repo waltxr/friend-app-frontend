@@ -3,7 +3,7 @@ import { Button, Comment, Form, Header } from 'semantic-ui-react'
 import ReceiverList from './receiverList'
 import image from '../../images/image.png'
 
-const ItemComment = (props) => {  
+const ItemComment = (props) => {    
   return (
     <Comment>
       <Comment.Content>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Link, withRouter } from "react-router-dom";
-import { logout } from '../actions/authActions';
+import { logout } from '../actions/appActions';
 import { Menu, Container } from 'semantic-ui-react'
 
 class Navigation extends Component {
