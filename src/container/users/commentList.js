@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ItemComment from './comment'
-import { Item, Comment, Button } from 'semantic-ui-react'
+import { Item, Comment, Button, Header } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 
@@ -22,12 +22,10 @@ class CommentList extends Component {
   }
 
   renderShowMore = (commentList) => {
-    if (!this.state.showMore || commentList.length === 0) {
-      console.log(commentList.length === 0);
+    if (!this.state.showMore || commentList.length <= 3) {
       return null
     } else {
-      console.log(commentList.length === 0);
-      return <Button onClick={this.showMore} size='mini'>Show More...</Button>
+      return <Button bassic onClick={this.showMore} size='mini'>Show More...</Button>
     }
   }
 
@@ -35,13 +33,15 @@ class CommentList extends Component {
     const commentList = Object.keys(this.props.comments)
     .map(key => this.props.comments[key])
     .filter(comment => comment.commentable_id === this.props.item_id)
+    console.log(this.props.comments);
+    const renderedList = commentList
     .slice(0,this.state.limit)
     .map(comment => <ItemComment key={comment.id} id={comment.id} body={comment.body} user={comment.user}/>)
 
     return (
-      <Comment.Group>
-        { commentList }
-        {this.renderShowMore(commentList)}
+      <Comment.Group threaded>
+        { renderedList }
+        { this.renderShowMore(commentList) }
       </Comment.Group>
     )
 

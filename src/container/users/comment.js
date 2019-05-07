@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Button, Comment, Form, Header } from 'semantic-ui-react'
 import ReceiverList from './receiverList'
-import image from '../../images/image.png'
 import CommentList from './commentList'
 import CommentForm from './commentForm'
+import avatar from '../../images/avatar.jpg'
 
 
 
@@ -34,18 +34,19 @@ class ItemComment extends Component {
   render() {
     return (
       <Comment>
+        <Comment.Avatar as='a' src={avatar} />
         <Comment.Content>
           <Comment.Author as='a'>{this.props.user.name}</Comment.Author>
           <Comment.Metadata>
-            <div>Today at 5:42PM</div>
+            <span>Today at 5:42PM</span>
           </Comment.Metadata>
           <Comment.Text>{this.props.body}</Comment.Text>
           <Comment.Actions>
             <Comment.Action onClick={this.handleReplyForm}>Reply</Comment.Action>
           </Comment.Actions>
           {this.renderReplyForm()}
-          <CommentList item_id={this.props.id}/>
         </Comment.Content>
+        <CommentList item_id={this.props.id}/>
       </Comment>
     )
   }
