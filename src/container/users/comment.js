@@ -5,14 +5,20 @@ import CommentList from './commentList'
 import ReplyForm from './replyForm'
 import avatar from '../../images/avatar.jpg'
 
-
+//// TODO:
+// a lot of what's happening in commentList needs to be in here
+// filter if item_id has any comments before rendering comment list,
+// then send number of comments, and render that with show replies instead of reply
+// like in instagram
 
 class ItemComment extends Component {
 
   constructor(props){
+    console.log(props.showReplyButton);
     super(props)
       this.state = {
-        showReplyForm: false
+        showReplyForm: false,
+        showReplyButton: props.showReplyButton
     }
   }
 
@@ -33,7 +39,6 @@ class ItemComment extends Component {
 
   render() {
 
-
     const replyButton = (
       <Comment.Action onClick={this.handleReplyForm}>Reply</Comment.Action>
     )
@@ -48,8 +53,7 @@ class ItemComment extends Component {
           </Comment.Metadata>
           <Comment.Text>{this.props.body}</Comment.Text>
           <Comment.Actions>
-            { this.props.isReply ? replyButton : null }
-            <Comment.Action onClick={this.handleReplyForm}>Reply</Comment.Action>
+            { this.state.showReplyButton ? replyButton : null }
           </Comment.Actions>
           {this.renderReplyForm()}
         </Comment.Content>
