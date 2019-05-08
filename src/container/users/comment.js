@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button, Comment, Form, Header } from 'semantic-ui-react'
 import ReceiverList from './receiverList'
 import CommentList from './commentList'
-import CommentForm from './commentForm'
+import ReplyForm from './replyForm'
 import avatar from '../../images/avatar.jpg'
 
 
@@ -26,12 +26,18 @@ class ItemComment extends Component {
     if (!this.state.showReplyForm) {
       return null
     } else {
-      return <CommentForm grievance={this.props}/>
+      return <ReplyForm comment={this.props}/>
     }
   }
 
 
   render() {
+
+
+    const replyButton = (
+      <Comment.Action onClick={this.handleReplyForm}>Reply</Comment.Action>
+    )
+
     return (
       <Comment>
         <Comment.Avatar as='a' src={avatar} />
@@ -42,11 +48,12 @@ class ItemComment extends Component {
           </Comment.Metadata>
           <Comment.Text>{this.props.body}</Comment.Text>
           <Comment.Actions>
+            { this.props.isReply ? replyButton : null }
             <Comment.Action onClick={this.handleReplyForm}>Reply</Comment.Action>
           </Comment.Actions>
           {this.renderReplyForm()}
         </Comment.Content>
-        <CommentList item_id={this.props.id}/>
+        <CommentList item_id={this.props.id} isCommentList={true} />
       </Comment>
     )
   }

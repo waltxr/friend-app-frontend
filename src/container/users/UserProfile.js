@@ -20,7 +20,6 @@ class UserProfile extends Component {
   }
 
   render() {
-    console.log(this.props);
     return(
       <Container text style={{ marginTop: '7em' }}>
         {this.props.currentUser.name}

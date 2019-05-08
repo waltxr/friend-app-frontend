@@ -10,7 +10,8 @@ class CommentList extends Component {
     super(props)
       this.state = {
         limit: 3,
-        showMore: true
+        showMore: true,
+        isCommentList: props.isCommentList
     }
   }
 
@@ -29,18 +30,28 @@ class CommentList extends Component {
     }
   }
 
+  handleShowReplies = () => {
+    this.setState({
+      isCommentList: false
+    })
+  }
+
   render() {
     const commentList = Object.keys(this.props.comments)
     .map(key => this.props.comments[key])
     .filter(comment => comment.commentable_id === this.props.item_id)
-    console.log(this.props.comments);
+
     const renderedList = commentList
     .slice(0,this.state.limit)
-    .map(comment => <ItemComment key={comment.id} id={comment.id} body={comment.body} user={comment.user}/>)
+    .map(comment => <ItemComment key={comment.id} id={comment.id} body={comment.body} user={comment.user} isReply={this.state.isCommentList} />)
+
+    const viewRepliesButton = (
+      <Button bassic onClick={this.handleShowReplies} size='mini'>View replies...</Button>
+    )
 
     return (
       <Comment.Group threaded>
-        { renderedList }
+        { this.state.isCommentList && commentList.length>0 ? viewRepliesButton : renderedList }
         { this.renderShowMore(commentList) }
       </Comment.Group>
     )

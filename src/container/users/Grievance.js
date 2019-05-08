@@ -25,7 +25,7 @@ class Grievance extends Component {
                 <ReceiverList receivers={this.props.receivers} />
               </Item.Content>
           </Item>
-          <CommentList item_id={this.props.id}/>
+          <CommentList item_id={this.props.id} isCommentList={false}/>
           <CommentForm grievance={this.props}/>
         </div>
     )

@@ -162,7 +162,25 @@ export const postGrievanceComment = (comment, grievance) => {
       body: JSON.stringify({comment: comment})
     })
     .then(response => response.json())
-    .then(comment => {      
+    .then(comment => {
+      dispatch(addComment(normalize(comment, commentSchema)))
+      dispatch(resetForm())
+    })
+  }
+}
+
+export const postReplyComment = (comment, replyingTo) => {  
+  return (dispatch) => {
+    return fetch(`${API_URL}/comments/${replyingTo.id}/comments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`,
+      },
+      body: JSON.stringify({comment: comment})
+    })
+    .then(response => response.json())
+    .then(comment => {
       dispatch(addComment(normalize(comment, commentSchema)))
       dispatch(resetForm())
     })
