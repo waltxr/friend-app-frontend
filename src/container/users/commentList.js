@@ -44,7 +44,7 @@ class CommentList extends Component {
 
     const renderedList = commentList
     .slice(0,this.state.limit)
-    .map(comment => <ItemComment key={comment.id} id={comment.id} body={comment.body} user={comment.user} isCommentList={this.props.isCommentList}/>)
+    .map(comment => <ItemComment key={comment.id} id={comment.id} body={comment.body} user={comment.user} isCommentList={this.props.isCommentList} />)
 
     const viewRepliesButton = (
       <Button bassic onClick={this.handleShowReplies} size='mini'>View replies...</Button>
