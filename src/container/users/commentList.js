@@ -7,13 +7,11 @@ import { connect } from 'react-redux'
 class CommentList extends Component {
 
   constructor(props){
-    console.log(props.isCommentList);
     super(props)
       this.state = {
         limit: 3,
         showMore: true,
         isCommentList: props.isCommentList,
-        showReplyButton: false
     }
   }
 
@@ -46,7 +44,7 @@ class CommentList extends Component {
 
     const renderedList = commentList
     .slice(0,this.state.limit)
-    .map(comment => <ItemComment key={comment.id} id={comment.id} body={comment.body} user={comment.user} showReplyButton={(this.state.showReplyButton)}/>)
+    .map(comment => <ItemComment key={comment.id} id={comment.id} body={comment.body} user={comment.user} isCommentList={this.props.isCommentList}/>)
 
     const viewRepliesButton = (
       <Button bassic onClick={this.handleShowReplies} size='mini'>View replies...</Button>
@@ -54,8 +52,8 @@ class CommentList extends Component {
 
     return (
       <Comment.Group threaded>
-        { this.state.isCommentList && commentList.length>0 ? viewRepliesButton : renderedList }
-        { this.state.isCommentList && commentList.length>0 ? null : this.renderShowMore(commentList) }
+        { renderedList }
+        { this.renderShowMore(commentList) }
       </Comment.Group>
     )
 

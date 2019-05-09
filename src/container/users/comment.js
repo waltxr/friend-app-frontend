@@ -18,7 +18,8 @@ class ItemComment extends Component {
     super(props)
       this.state = {
         showReplyForm: false,
-        showReplyButton: props.showReplyButton
+        showReplyButton: !props.isCommentList,
+        showShowRepliesButton: props.isCommentList,
     }
   }
 
@@ -37,10 +38,34 @@ class ItemComment extends Component {
   }
 
 
-  render() {
+  handleShowShowRepliesButton = () => {
+    this.setState({
+      ...this.state,
+      showShowRepliesButton: false,
+      showReplyButton: true
+    })
+  }
 
+  handleShowReplyButton = () => {
+    this.setState({
+      ...this.state,
+      showReplyButton: true
+    })
+  }
+
+
+  render() {
+    console.log(this.props);
     const replyButton = (
       <Comment.Action onClick={this.handleReplyForm}>Reply</Comment.Action>
+    )
+
+    const showRepliesButton = (
+      <Button bassic onClick={this.handleShowShowRepliesButton} size='mini'>View replies...</Button>
+    )
+
+    const commentList = (
+      <CommentList item_id={this.props.id} isCommentList={true} />
     )
 
     return (
@@ -53,11 +78,11 @@ class ItemComment extends Component {
           </Comment.Metadata>
           <Comment.Text>{this.props.body}</Comment.Text>
           <Comment.Actions>
-            { this.state.showReplyButton ? replyButton : null }
+            { this.state.showReplyButton ? replyButton : showRepliesButton }
           </Comment.Actions>
           {this.renderReplyForm()}
         </Comment.Content>
-        <CommentList item_id={this.props.id} isCommentList={true} />
+        { this.state.showShowRepliesButton ? null : commentList }
       </Comment>
     )
   }
