@@ -31,9 +31,9 @@ class UserProfile extends Component {
 
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) => {  
   return {
-    currentUser: state.app.currentUser[1],
+    currentUser: state.app.currentUser,
     currentUserComments: state.app.userComments,
     currentUserGrievances: state.app.userGrievances,
     users: state.users.list,

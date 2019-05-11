@@ -48,7 +48,6 @@ class ItemComment extends Component {
 
 
   render() {
-    console.log(this.state);
     const replyButton = (
       <Comment.Action onClick={this.handleReplyForm}>Reply</Comment.Action>
     )

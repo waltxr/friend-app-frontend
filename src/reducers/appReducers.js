@@ -20,11 +20,20 @@ export default (state = initialState, action) => {
       }
 
     case types.AUTHENTICATION_SUCCESS:
+
+      if (!action.user.entities.user) {
+        action.user.entities.user = state.currentUser
+      } else if (!action.user.entities.comments) {
+        action.user.entities.comments = state.userComments
+      } else if (!action.user.entities.grievances) {
+        action.user.entities.grievances = state.userGrievances
+      }
+            
       return {
         ...state,
         isAuthenticated: true,
         isAuthenticating: false,
-        currentUser: action.user.entities.user,
+        currentUser: Object.keys(action.user.entities.user).map(key => action.user.entities.user[key]),
         userComments: action.user.entities.comments,
         userGrievances: action.user.entities.grievances,
         token: action.token
@@ -53,7 +62,7 @@ export default (state = initialState, action) => {
         userGrievances: merge({}, state.userGrievances, action.grievance.entities.grievances)
       }
 
-    case types.ADD_COMMENT:    
+    case types.ADD_COMMENT:
       return {
         ...state,
         userComments: merge({}, state.userComments, action.comment.entities.comments)

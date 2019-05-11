@@ -169,7 +169,7 @@ export const postGrievanceComment = (comment, grievance) => {
   }
 }
 
-export const postReplyComment = (comment, replyingTo) => {  
+export const postReplyComment = (comment, replyingTo) => {
   return (dispatch) => {
     return fetch(`${API_URL}/comments/${replyingTo.id}/comments`, {
       method: "POST",

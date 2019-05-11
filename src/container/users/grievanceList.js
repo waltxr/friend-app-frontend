@@ -9,7 +9,7 @@ class GrievanceList extends Component {
 render() {
     const grievancesList = Object.keys(this.props.grievances)
     .map((key) => this.props.grievances[key])
-
+    
     const grievances = grievancesList.reverse()
     .map((grievance) => <Grievance key={grievance.id} id={grievance.id} title={grievance.title} description={grievance.description} receivers={grievance.receivers}/>)
     return (
