@@ -6,18 +6,18 @@ import { connect } from 'react-redux'
 
 class GrievanceList extends Component {
 
-render() {
+render() {    
     let grievancesList    
-    if (this.props.type=='filed_grievances') {
+    if (this.props.type==='filed_grievances') {
       grievancesList = Object.keys(this.props.filed_grievances)
       .map((key) => this.props.filed_grievances[key])
-    } else if (this.props.type=='received_grievances') {      
+    } else if (this.props.type==='received_grievances') {      
       grievancesList = Object.keys(this.props.received_grievances)
       .map((key) => this.props.received_grievances[key])
     }  
     
     const grievances = grievancesList.reverse()
-    .map((grievance) => <Grievance key={grievance.id} id={grievance.id} title={grievance.title} description={grievance.description} receivers={grievance.receivers}/>)
+    .map((grievance) => <Grievance key={grievance.id} id={grievance.id} title={grievance.title} description={grievance.description} receivers={grievance.receivers} reporter={grievance.reporter}/>)
     return (
       <Item.Group>
         {grievances}

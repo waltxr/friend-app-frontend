@@ -123,7 +123,7 @@ export const getUser = (credentials) => {
     .then(response => {
       return response.json()
     })
-    .then(userJson => {      
+    .then(userJson => {
       return normalize(userJson, userSchema)
     })
     .catch(error => {
@@ -143,7 +143,7 @@ export const fileGrievance = (grievance) => {
       body: JSON.stringify({grievance: grievance})
     })
     .then(response => response.json())
-    .then(grievance => {
+    .then(grievance => {      
       dispatch(addGrievance(normalize(grievance, grievanceSchema)))
       dispatch(resetForm())
     })

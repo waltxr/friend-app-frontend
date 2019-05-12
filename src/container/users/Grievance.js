@@ -15,11 +15,12 @@ class Grievance extends Component {
         <div>
           <Item>
             <Item.Content>
-              <Item.Header as='a'>{this.props.title}</Item.Header>
-              <Item.Meta>
-                <span className='cinema'>Grievance</span>
+              <span className='cinema'>Grievance</span>
+              <Item.Header>{this.props.title}</Item.Header>
+              <Item.Meta>                
               </Item.Meta>
               <Item.Description>{this.props.description}</Item.Description>
+              <span>Filed by: {this.props.reporter.name}</span>
                 <ReceiverList receivers={this.props.receivers} />
               </Item.Content>
           </Item>
