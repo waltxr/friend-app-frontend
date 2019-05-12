@@ -13,7 +13,7 @@ class UserProfile extends Component {
     this.props.getUsers()
   }
 
-  componentDidMount() {
+  componentDidMount() {    
     const {currentUser, history} = this.props
     history.push(currentUser.name.toLowerCase()+'-'+currentUser.id)
   }
@@ -23,20 +23,19 @@ class UserProfile extends Component {
       <Container text style={{ marginTop: '7em' }}>
         {this.props.currentUser.name}
         <GrievanceForm users={this.props.users} />
-        <GrievanceList user={this.props.user} />
+        <GrievanceList user={this.props.currentUser} type='filed_grievances'/>
+        <GrievanceList user={this.props.currentUser} type='received_grievances'/>
       </Container>
     )
   }
 
 }
 
-const mapStateToProps = (state) => {  
+const mapStateToProps = (state) => {    
   return {
     currentUser: state.app.currentUser,
     currentUserComments: state.app.userComments,
-    currentUserGrievances: state.app.userGrievances,
-    users: state.users.list,
-    created_grievances: state.created_grievances
+    users: state.users.list    
   }
 }
 

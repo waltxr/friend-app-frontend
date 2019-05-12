@@ -123,7 +123,7 @@ export const getUser = (credentials) => {
     .then(response => {
       return response.json()
     })
-    .then(userJson => {
+    .then(userJson => {      
       return normalize(userJson, userSchema)
     })
     .catch(error => {

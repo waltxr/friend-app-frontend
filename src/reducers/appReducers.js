@@ -6,7 +6,8 @@ const initialState = {
   isAuthenticating: false,
   currentUser: {},
   userComments: {},
-  userGrievances: {},
+  userFiledGrievances: {},
+  userReceivedGrievances: {},
   token: null,
   errors: null
 }
@@ -20,22 +21,24 @@ export default (state = initialState, action) => {
       }
 
     case types.AUTHENTICATION_SUCCESS:
-
       if (!action.user.entities.user) {
         action.user.entities.user = state.currentUser
       } else if (!action.user.entities.comments) {
         action.user.entities.comments = state.userComments
-      } else if (!action.user.entities.grievances) {
-        action.user.entities.grievances = state.userGrievances
+      } else if (!action.user.entities.filed_grievances) {
+        action.user.entities.filed_grievances = state.userFiledGrievances
+      } else if (!action.user.entities.received_grievances) {
+        action.user.entities.received_grievances = state.userReceivedGrievances
       }
-            
+      
       return {
         ...state,
         isAuthenticated: true,
         isAuthenticating: false,
-        currentUser: Object.keys(action.user.entities.user).map(key => action.user.entities.user[key]),
+        currentUser: Object.keys(action.user.entities.user).map(key => action.user.entities.user[key])[0],
         userComments: action.user.entities.comments,
-        userGrievances: action.user.entities.grievances,
+        userFiledGrievances: action.user.entities.filed_grievances,
+        userReceivedGrievances: action.user.entities.received_grievances,
         token: action.token
       }
 
