@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Button, Form, Container } from 'semantic-ui-react'
+import { Container } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom';
 import GrievanceList from './grievanceList'
-import SideMenu from '../sideMenu'
 import GrievanceForm from './grievanceForm'
 import { getUsers } from '../../actions/userActions'
 

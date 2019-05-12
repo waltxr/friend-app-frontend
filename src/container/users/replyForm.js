@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import { Image, Item, Label, Button, Comment, Form, Container, Input } from 'semantic-ui-react'
-import ReceiverList from './receiverList'
-import image from '../../images/image.png'
-import CommentList from './commentList'
+import { Form, Input } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { postReplyComment } from '../../actions/appActions'
 

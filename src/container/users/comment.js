@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Comment, Form, Header } from 'semantic-ui-react'
-import ReceiverList from './receiverList'
+import { Comment } from 'semantic-ui-react'
 import CommentList from './commentList'
 import ReplyForm from './replyForm'
 import avatar from '../../images/avatar.jpg'

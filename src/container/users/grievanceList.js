@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Grievance from './Grievance'
-import { Item, Feed } from 'semantic-ui-react'
+import { Item } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 

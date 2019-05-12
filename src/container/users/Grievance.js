@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import { Image, Item, Label, Button, Comment, Form, Container, Input } from 'semantic-ui-react'
+import { Item } from 'semantic-ui-react'
 import ReceiverList from './receiverList'
-import image from '../../images/image.png'
 import CommentList from './commentList'
 import { connect } from 'react-redux'
-import filter from 'lodash/filter'
 import CommentForm from './commentForm'
 
 

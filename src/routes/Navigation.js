@@ -26,10 +26,10 @@ class Navigation extends Component {
 
         const userNav = (
       <Container>
-        <Menu.Item as='a' header>
+        <Menu.Item header>
           <Link to='/user/'>Profile</Link>
         </Menu.Item>
-        <Menu.Item as='a' header onClick={(e) => this.handleLogout(e)}>
+        <Menu.Item header onClick={(e) => this.handleLogout(e)}>
           Log Out
         </Menu.Item>
       </Container>
