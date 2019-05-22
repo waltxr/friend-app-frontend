@@ -10,10 +10,11 @@ import { getUsers } from '../../actions/userActions'
 class UserProfile extends Component {
 
   componentWillMount() {
+    console.log("in user profile");
     this.props.getUsers()
   }
 
-  componentDidMount() {    
+  componentDidMount() {
     const {currentUser, history} = this.props
     history.push(currentUser.name.toLowerCase()+'-'+currentUser.id)
   }
@@ -31,11 +32,12 @@ class UserProfile extends Component {
 
 }
 
-const mapStateToProps = (state) => {    
+const mapStateToProps = (state) => {
+  console.log(state);
   return {
     currentUser: state.app.currentUser,
     currentUserComments: state.app.userComments,
-    users: state.users.list    
+    users: state.users.list
   }
 }
 

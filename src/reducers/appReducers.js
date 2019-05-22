@@ -21,16 +21,17 @@ export default (state = initialState, action) => {
       }
 
     case types.AUTHENTICATION_SUCCESS:
+
       if (!action.user.entities.user) {
         action.user.entities.user = state.currentUser
-      } else if (!action.user.entities.comments) {
+      } if (!action.user.entities.comments) {
         action.user.entities.comments = state.userComments
-      } else if (!action.user.entities.filed_grievances) {
+      } if (!action.user.entities.filed_grievances) {
         action.user.entities.filed_grievances = state.userFiledGrievances
-      } else if (!action.user.entities.received_grievances) {
+      } if (!action.user.entities.received_grievances) {
         action.user.entities.received_grievances = state.userReceivedGrievances
       }
-
+      
       return {
         ...state,
         isAuthenticated: true,
@@ -56,6 +57,9 @@ export default (state = initialState, action) => {
         isAuthenticated: false,
         isAuthenticating: false,
         currentUser: {},
+        userComments: {},
+        userFiledGrievances: {},
+        userReceivedGrievances: {},
         token: null
       }
 
