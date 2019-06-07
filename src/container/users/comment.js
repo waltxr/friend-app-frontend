@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 
 class ItemComment extends Component {
 
-  constructor(props){
+  constructor(props){    
     super(props)
       this.state = {
         showReplyForm: false,

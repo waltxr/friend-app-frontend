@@ -10,7 +10,6 @@ import { getUsers } from '../../actions/userActions'
 class UserProfile extends Component {
 
   componentWillMount() {
-    console.log("in user profile");
     this.props.getUsers()
   }
 
@@ -33,7 +32,6 @@ class UserProfile extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     currentUser: state.app.currentUser,
     currentUserComments: state.app.userComments,

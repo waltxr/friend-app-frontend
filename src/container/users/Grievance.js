@@ -11,13 +11,14 @@ import CommentForm from './commentForm'
 class Grievance extends Component {
 
   render() {
+    console.log(this.props);
     return (
         <div>
           <Item>
             <Item.Content>
               <span className='cinema'>Grievance</span>
               <Item.Header>{this.props.title}</Item.Header>
-              <Item.Meta>                
+              <Item.Meta>
               </Item.Meta>
               <Item.Description>{this.props.description}</Item.Description>
               <span>Filed by: {this.props.reporter.name}</span>

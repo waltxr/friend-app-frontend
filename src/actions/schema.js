@@ -26,5 +26,9 @@ receivedGrievanceSchema.define({
   comments: [commentSchema]
 })
 
+commentSchema.define({
+  comments: [commentSchema]
+})
+
 
 export { userSchema }

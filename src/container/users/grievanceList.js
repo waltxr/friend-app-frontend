@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 class GrievanceList extends Component {
 
 render() {
-    console.log("in grievance list");
     let grievancesList
     if (this.props.type==='filed_grievances') {
       grievancesList = Object.keys(this.props.filed_grievances)
@@ -29,7 +28,6 @@ render() {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     filed_grievances: state.app.userFiledGrievances,
     received_grievances: state.app.userReceivedGrievances
