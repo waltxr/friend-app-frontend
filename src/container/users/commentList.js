@@ -38,7 +38,6 @@ class CommentList extends Component {
   }
 
   render() {
-    console.log(this.props);
 
     const commentList = Object.keys(this.props.comments)
     .map(key => this.props.comments[key])

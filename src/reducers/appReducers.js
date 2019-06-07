@@ -31,7 +31,7 @@ export default (state = initialState, action) => {
       } if (!action.user.entities.received_grievances) {
         action.user.entities.received_grievances = state.userReceivedGrievances
       }
-      
+
       return {
         ...state,
         isAuthenticated: true,
@@ -66,7 +66,7 @@ export default (state = initialState, action) => {
     case types.FILE_GRIEVANCE:
       return {
         ...state,
-        userFiledGrievances: merge({}, state.userGrievances, action.grievance.entities.grievances)
+        userFiledGrievances: merge({}, state.userFiledGrievances, action.grievance.entities.grievances)
       }
 
     case types.ADD_COMMENT:

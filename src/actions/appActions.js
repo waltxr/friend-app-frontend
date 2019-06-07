@@ -124,7 +124,6 @@ export const getUser = (credentials) => {
       return response.json()
     })
     .then(userJson => {
-      console.log(userJson);
       return normalize(userJson, userSchema)
     })
     .catch(error => {

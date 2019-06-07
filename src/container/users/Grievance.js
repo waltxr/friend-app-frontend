@@ -11,7 +11,6 @@ import CommentForm from './commentForm'
 class Grievance extends Component {
 
   render() {
-    console.log(this.props);
     return (
         <div>
           <Item>
