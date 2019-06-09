@@ -186,3 +186,18 @@ export const postReplyComment = (comment, replyingTo) => {
     })
   }
 }
+
+export const createGroup = (group) => {
+  return (dispatch) => {
+    return fetch(`${API_URL}/groups/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`
+      },
+      body: JSON.stringify({group: group})
+    })
+    .then(response => response.json())
+    .then(res => (console.log(res)))
+  }
+}
