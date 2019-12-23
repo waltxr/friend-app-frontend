@@ -9,7 +9,8 @@ const initialState = {
   userFiledGrievances: {},
   userReceivedGrievances: {},
   token: null,
-  errors: null
+  errors: null,
+  currentGroup: {}
 }
 
 export default (state = initialState, action) => {
@@ -31,12 +32,13 @@ export default (state = initialState, action) => {
       } if (!action.user.entities.received_grievances) {
         action.user.entities.received_grievances = state.userReceivedGrievances
       }
+      let user = Object.keys(action.user.entities.user).map(key => action.user.entities.user[key])[0]
 
       return {
         ...state,
         isAuthenticated: true,
         isAuthenticating: false,
-        currentUser: Object.keys(action.user.entities.user).map(key => action.user.entities.user[key])[0],
+        currentUser: user,
         userComments: action.user.entities.comments,
         userFiledGrievances: action.user.entities.filed_grievances,
         userReceivedGrievances: action.user.entities.received_grievances,
@@ -73,6 +75,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         userComments: merge({}, state.userComments, action.comment.entities.comments)
+      }
+
+    case types.SET_GROUP:
+      return {
+        ...state,
+        currentGroup: action.group
       }
 
     case types.RESET_FORM:

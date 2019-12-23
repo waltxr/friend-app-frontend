@@ -10,3 +10,5 @@ export const FILE_GRIEVANCE = "FILE_GRIEVANCE"
 export const RESET_FORM = "RESET_FORM"
 
 export const ADD_COMMENT = "ADD_COMMENT"
+
+export const SET_GROUP = "SET_GROUP"

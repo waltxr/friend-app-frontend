@@ -36,6 +36,7 @@ class Login extends Component {
     e.preventDefault();
     if (this.state.email !== "" && this.state.password !== "") {
       this.props.authenticate(this.state)
+      // this.props.history.push('/profile')
     } else {
       window.alert("Both email and password are required fields.")
     }

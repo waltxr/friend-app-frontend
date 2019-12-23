@@ -20,6 +20,8 @@ class App extends Component {
       </div>
     )
 
+
+
     const userViews = (
       <div className="wrapper">
         <Navigation isAuthenticated={isAuthenticated} user={user} />
@@ -36,10 +38,11 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
     isAuthenticated: state.app.isAuthenticated,
     user: state.app.currentUser,
-    created_grievances: state.created_grievances
+    created_grievances: state.created_grievances,
   }
 }
 

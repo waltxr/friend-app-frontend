@@ -23,7 +23,7 @@ class UserProfile extends Component {
   }
 
   render() {
-
+    console.log(this.props);
     const newUser = (
       <CreateGroup />
     )
@@ -33,6 +33,7 @@ class UserProfile extends Component {
         <GroupList groups={this.props.currentUser.groups} />
       </Container>
     )
+
     // return(
     //   <Container text style={{ marginTop: '7em' }}>
     //     {this.props.currentUser.name}
@@ -41,6 +42,7 @@ class UserProfile extends Component {
     //     <GrievanceList user={this.props.currentUser} type='received_grievances'/>
     //   </Container>
     // )
+
 
     return(
       <Container>
@@ -55,7 +57,8 @@ const mapStateToProps = (state) => {
   return {
     currentUser: state.app.currentUser,
     currentUserComments: state.app.userComments,
-    users: state.users.list
+    users: state.users.list,
+    currentGroup: state.app.currentGroup
   }
 }
 

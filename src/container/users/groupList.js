@@ -6,10 +6,10 @@ import { connect } from 'react-redux'
 class GroupList extends Component {
 
   render() {
-
+    console.log(this.props);
     const groups = this.props.groups
-    .map( group => <GroupCard group={group} />)
-    
+    .map( group => <GroupCard group={group} key={group.id}/>)
+
     return(
       <Card.Group centered>
         {groups}

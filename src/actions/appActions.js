@@ -5,6 +5,13 @@ import {commentSchema} from './commentSchema'
 import { API_URL } from './apiUrl'
 import * as types from './actionTypes'
 
+const group = (groupObject) => {  
+  return {
+    type: types.SET_GROUP,
+    group: groupObject
+  }
+}
+
 const authRequest = () => {
   return {
     type: types.AUTHENTICATION_REQUEST
@@ -52,6 +59,12 @@ export const logout = () => {
     return dispatch({
       type: types.LOGOUT
     });
+  }
+}
+
+export const setGroup = groupObject => {
+  return dispatch => {
+    dispatch(group(groupObject))
   }
 }
 
