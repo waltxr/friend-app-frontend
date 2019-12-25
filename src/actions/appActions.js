@@ -5,7 +5,7 @@ import {commentSchema} from './commentSchema'
 import { API_URL } from './apiUrl'
 import * as types from './actionTypes'
 
-const group = (groupObject) => {  
+const group = (groupObject) => {
   return {
     type: types.SET_GROUP,
     group: groupObject
@@ -146,6 +146,7 @@ export const getUser = (credentials) => {
 
 
 export const fileGrievance = (grievance) => {
+  debugger
   return (dispatch) => {
     return fetch(`${API_URL}/grievances`, {
       method: "POST",

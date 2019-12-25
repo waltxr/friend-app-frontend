@@ -9,7 +9,8 @@ class GrievanceForm extends Component {
       this.state = {
         title: "",
         description: "",
-        receiver_ids: []
+        receiver_ids: [],
+        group_id: this.props.currentGroup.id
     }
   }
 
@@ -64,4 +65,10 @@ class GrievanceForm extends Component {
   }
 }
 
-export default connect(null, { fileGrievance })(GrievanceForm)
+const mapStateToProps = (state) => {
+  return {
+    currentGroup: state.app.currentGroup
+  }
+}
+
+export default connect(mapStateToProps, { fileGrievance })(GrievanceForm)

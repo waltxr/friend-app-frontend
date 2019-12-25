@@ -10,7 +10,7 @@ const initialState = {
   userReceivedGrievances: {},
   token: null,
   errors: null,
-  currentGroup: {}
+  currentGroup: false
 }
 
 export default (state = initialState, action) => {

@@ -7,6 +7,7 @@ import GrievanceForm from './grievanceForm'
 import { getUsers } from '../../actions/userActions'
 import CreateGroup from '../createGroup'
 import GroupList from './groupList'
+import GroupHome from './GroupHome'
 
 
 
@@ -23,18 +24,23 @@ class UserProfile extends Component {
   }
 
   render() {
-    console.log(this.props);
+
+    console.log(this.props.currentGroup === {});
     const newUser = (
       <CreateGroup />
     )
 
+    const groupList = (
+      <GroupList groups={this.props.currentUser.groups} />
+    )
+
     const selectGroup = (
       <Container style={{ marginTop: '7em' }}>
-        <GroupList groups={this.props.currentUser.groups} />
+        { this.props.currentUser.groups.length > 0 ? groupList : newUser}
       </Container>
     )
 
-    // return(
+    // const groupHome = (
     //   <Container text style={{ marginTop: '7em' }}>
     //     {this.props.currentUser.name}
     //     <GrievanceForm users={this.props.users} />
@@ -46,7 +52,7 @@ class UserProfile extends Component {
 
     return(
       <Container>
-        { this.props.currentUser.groups.length > 0 ? selectGroup : newUser }
+        { this.props.currentGroup === false ? selectGroup : <GroupHome /> }
       </Container>
     )
   }
