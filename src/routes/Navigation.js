@@ -27,11 +27,11 @@ class Navigation extends Component {
         const userNav = (
       <Container>
         <Menu.Item header>
-          <Link to='/user/'>Profile</Link>
+          <Link to='/user/'>{this.props.currentUserName}</Link>
         </Menu.Item>
         <Menu.Item header onClick={(e) => this.handleLogout(e)}>
           Log Out
-        </Menu.Item>
+        </Menu.Item>        
       </Container>
     )
 
@@ -44,4 +44,10 @@ class Navigation extends Component {
 
 }
 
-export default Navigation = withRouter(connect(null, {logout})(Navigation));
+const mapStateToProps = state => {
+  return {
+    currentUserName: state.app.currentUser.name
+  }
+}
+
+export default Navigation = withRouter(connect(mapStateToProps, {logout})(Navigation));

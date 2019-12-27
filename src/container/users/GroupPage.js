@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 class GroupPage extends Component {
 
   render() {
-    console.log('in groupPage');
     return(
       <div>
         in GroupPage

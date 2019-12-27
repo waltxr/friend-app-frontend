@@ -2,7 +2,6 @@ import React from 'react'
 import { Card, Image } from 'semantic-ui-react'
 
 const MemberCard = (props) => {
-  console.log(props);
   return (
     <Card>
       <Card.Content>

@@ -10,12 +10,11 @@ import { connect } from 'react-redux';
 
 class GroupCard extends Component {
 
-  selectGroup = () => {    
+  selectGroup = () => {
     this.props.setGroup(this.props.group)
   }
 
   render() {
-    console.log(this.props);
     const groupName = this.props.group.name
 
     return(

@@ -9,12 +9,14 @@ class GroupMembers extends Component {
     .map( member => <MemberCard member={member} key={member.id} />)
 
     return (
-      <Container>
-        <Card.Group>
-        <Header>Group Members</Header>
+      <Card>
+        <Card.Content>
+          <Card.Header>Group Members</Card.Header>
+        </Card.Content>
+        <Card.Content>
           {members}
-        </Card.Group>
-      </Container>
+        </Card.Content>
+      </Card>
     )
   }
 }

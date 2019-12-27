@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Input } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { postReplyComment } from '../../actions/appActions'
+// import { postReplyComment } from '../../actions/appActions'
 
 class ReplyForm extends Component {
   constructor(props){
@@ -20,6 +20,7 @@ class ReplyForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+    // this.props.postReplyComment(this.state, this.props.comment)
     this.props.postReplyComment(this.state, this.props.comment)
     this.setState({
       body: ""
@@ -44,4 +45,4 @@ class ReplyForm extends Component {
 
 }
 
-export default connect(null, { postReplyComment })(ReplyForm)
+export default connect(null, { })(ReplyForm)

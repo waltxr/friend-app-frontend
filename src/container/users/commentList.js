@@ -4,6 +4,7 @@ import { Comment, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 
+
 class CommentList extends Component {
 
   constructor(props){
@@ -12,7 +13,15 @@ class CommentList extends Component {
         limit: 3,
         showMore: true,
         isCommentList: props.isCommentList,
+        commentList: props.comments
     }
+  }
+
+  componentWillReceiveProps(props) {    
+    this.setState({
+      ...this.state,
+      commentList: props.comments
+    })
   }
 
   showMore = (commentList) => {
@@ -37,33 +46,47 @@ class CommentList extends Component {
     })
   }
 
+  updateCommentList = () => {
+    this.setState({
+
+    })
+  }
+
+  // postReplyComment = (comment, replyingTo) => {
+  //   fetch(`${API_URL}/comments/${replyingTo.id}/comments`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "Authorization": `Bearer ${localStorage.token}`,
+  //     },
+  //     body: JSON.stringify({comment: comment})
+  //   })
+  //   .then(response => response.json())
+  //   .then(comment => {
+  //     console.log(comment);
+  //     this.setState({
+  //       ...this.state,
+  //       commentList: [...this.state.commentList, comment]
+  //     })
+  //     debugger
+  //   })
+  // }
+
   render() {
-
-    const commentList = Object.keys(this.props.comments)
-    .map(key => this.props.comments[key])
-    .filter(comment => comment.commentable_id === this.props.item_id)
-
-
-    const renderedList = commentList
+    console.log(this.state);
+    const renderedList = this.state.commentList
     .slice(0,this.state.limit)
-    .map(comment => <ItemComment key={comment.id} id={comment.id} body={comment.body} user={comment.user} isCommentList={this.props.isCommentList} comments={comment.comments}/>)
+    .map(comment => <ItemComment key={comment.id} id={comment.id} body={comment.body} user={comment.user} isCommentList={this.props.isCommentList} comments={comment.comments} />)
 
     return (
       <Comment.Group threaded>
         { renderedList }
-        { this.renderShowMore(commentList) }
+        { this.renderShowMore(this.state.commentList) }
       </Comment.Group>
     )
 
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    comments: state.app.userComments
-  }
-}
 
-
-
-export default connect(mapStateToProps)(CommentList)
+export default connect(null)(CommentList)

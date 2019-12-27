@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Input } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { postGrievanceComment } from '../../actions/appActions'
+// import { postGrievanceComment } from '../../actions/appActions'
 
 class CommentForm extends Component {
   constructor(props){
@@ -44,4 +44,4 @@ class CommentForm extends Component {
 
 }
 
-export default connect(null, { postGrievanceComment })(CommentForm)
+export default connect(null, { })(CommentForm)

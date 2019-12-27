@@ -19,13 +19,10 @@ class UserProfile extends Component {
 
   componentDidMount() {
     const {currentUser, history} = this.props
-    console.log(currentUser);
     history.push(currentUser.name.toLowerCase()+'-'+currentUser.id)
   }
 
   render() {
-
-    console.log(this.props.currentGroup === {});
     const newUser = (
       <CreateGroup />
     )

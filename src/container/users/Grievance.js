@@ -4,13 +4,41 @@ import ReceiverList from './receiverList'
 import CommentList from './commentList'
 import { connect } from 'react-redux'
 import CommentForm from './commentForm'
+import { API_URL } from '../../actions/apiUrl'
 
 
 
 
 class Grievance extends Component {
 
+  constructor(props){
+    super(props)
+      this.state = {
+        commentList: props.comments
+    }
+  }
+
+  postGrievanceComment = (comment, grievance) => {
+    fetch(`${API_URL}/grievances/${grievance.id}/comments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`,
+      },
+      body: JSON.stringify({comment: comment})
+    })
+    .then(response => response.json())
+    .then(comment => {
+      this.setState({
+        commentList: [...this.state.commentList, comment]
+      })
+    })
+  }
+
   render() {
+    console.log(this.props);
+    console.log(this.state);
+    
     return (
         <div>
           <Item>
@@ -24,17 +52,11 @@ class Grievance extends Component {
                 <ReceiverList receivers={this.props.receivers} />
               </Item.Content>
           </Item>
-          <CommentList item_id={this.props.id} isCommentList={false}/>
-          <CommentForm grievance={this.props}/>
+          <CommentList item_id={this.props.id} isCommentList={false} comments={this.state.commentList} />
+          <CommentForm grievance={this.props} postGrievanceComment={this.postGrievanceComment}/>
         </div>
     )
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    comments: state.app.userComments
-  }
-}
-
-export default connect(mapStateToProps)(Grievance)
+export default connect(null)(Grievance)

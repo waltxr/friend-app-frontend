@@ -71,7 +71,7 @@ export default (state = initialState, action) => {
         userFiledGrievances: merge({}, state.userFiledGrievances, action.grievance.entities.grievances)
       }
 
-    case types.ADD_COMMENT:
+    case types.ADD_COMMENT:      
       return {
         ...state,
         userComments: merge({}, state.userComments, action.comment.entities.comments)
