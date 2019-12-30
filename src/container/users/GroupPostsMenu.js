@@ -34,7 +34,7 @@ export default class GroupPostsMenu extends Component {
             onClick={this.handleItemClick}
           />
         </Menu>
-          { this.state.activeItem === 'grievances' ? <GroupGrievanceList /> : null }
+          { this.state.activeItem === 'grievances' ? <GroupGrievanceList users={this.props.users}/> : null }
       </Container>
     )
   }

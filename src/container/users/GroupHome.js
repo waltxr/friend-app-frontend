@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Container, Card, Header } from 'semantic-ui-react'
+import { Container, Card, Header, Grid} from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom';
 import GrievanceList from './grievanceList'
-import GrievanceForm from './grievanceForm'
 import GroupMembers from './GroupMembers'
 import GroupPostsMenu from './GroupPostsMenu'
 
@@ -11,12 +10,19 @@ class GroupHome extends Component {
 
   render() {
     return (
-      <Container text style={{ marginTop: '7em' }}>
+      <Grid divided='vertically' text style={{ marginTop: '7em' }}>
         <Header>{this.props.currentGroup.name}</Header>
-        <GroupMembers members={this.props.currentGroup.members}/>
-        <GrievanceForm users={this.props.users} />
-        <GroupPostsMenu />
-      </Container>
+        <Grid.Row columns={2}>
+          <Grid.Column width={6}>
+            <GroupMembers members={this.props.currentGroup.members}/>
+          </Grid.Column>
+          <Grid.Column width={10}>
+            <GroupPostsMenu users={this.props.users}/>
+          </Grid.Column>
+          <Grid.Column>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     )
   }
 

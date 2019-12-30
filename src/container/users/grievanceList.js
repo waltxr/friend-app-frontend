@@ -4,6 +4,7 @@ import { Item } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 
+
 class GrievanceList extends Component {
 
   render() {
