@@ -59,7 +59,7 @@ class GrievanceForm extends Component {
         <Form.Field>
           <Form.TextArea label='Description' name='description' placeholder='Describe the grievance you have...'  value={this.state.description} onChange={this.handleChange}/>
         </Form.Field>
-          <Form.Button>File</Form.Button>
+        <Form.Button>File</Form.Button>
       </Form>
     )
   }
