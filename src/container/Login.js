@@ -3,6 +3,7 @@ import { Button, Form, Container, Header, Message } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { authenticate } from '../actions/appActions';
+import Navigation from '../routes/Navigation';
 
 class Login extends Component {
   constructor(props){
@@ -43,33 +44,38 @@ class Login extends Component {
   }
 
   render() {
+    const {isAuthenticated} = this.props
+    
     return (
-      <Container text style={{ marginTop: '7em' }}>
-        <Header as='h3'>Log in:</Header>
-        <Form onSubmit={this.handleSubmit}>
-         <Form.Field>
-           <label>Email:</label>
-           <input
-             placeholder='email...'
-             name='email'
-             value={this.state.email}
-             onChange={this.handleChange}
-           />
-         </Form.Field>
-         <Form.Field>
-           <label>Password:</label>
-           <input
-             placeholder='password...'
-             name='password'
-             type='password'
-             value={this.state.password}
-             onChange={this.handleChange}
-           />
-         </Form.Field>
-         <Button type='submit'>Submit</Button>
-          {this.errorHandling()}
-       </Form>
-     </Container>
+      <div>
+        <Navigation isAuthenticated={isAuthenticated} />
+        <Container text style={{ marginTop: '7em' }}>
+          <Header as='h3'>Log in:</Header>
+          <Form onSubmit={this.handleSubmit}>
+           <Form.Field>
+             <label>Email:</label>
+             <input
+               placeholder='email...'
+               name='email'
+               value={this.state.email}
+               onChange={this.handleChange}
+             />
+           </Form.Field>
+           <Form.Field>
+             <label>Password:</label>
+             <input
+               placeholder='password...'
+               name='password'
+               type='password'
+               value={this.state.password}
+               onChange={this.handleChange}
+             />
+           </Form.Field>
+           <Button type='submit'>Submit</Button>
+            {this.errorHandling()}
+         </Form>
+       </Container>
+     </div>
     )
   }
 
@@ -77,6 +83,7 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    isAuthenticated: state.app.isAuthenticated,
     errors: state.app.errors
   }
 }

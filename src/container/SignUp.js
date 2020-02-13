@@ -3,6 +3,7 @@ import { Form, Button, Container, Header } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { signup } from '../actions/appActions';
+import Navigation from '../routes/Navigation';
 
 class Signup extends Component {
   constructor(props){
@@ -33,51 +34,62 @@ class Signup extends Component {
   }
 
   render() {
+    const {isAuthenticated} = this.props
+    
     return(
-      <Container text style={{ marginTop: '7em' }}>
-        <Header as='h3'>Sign Up!</Header>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Field>
-            <label>Name:</label>
-            <input
-              placeholder="name..."
-              name='name'
-              value={this.state.name}
-              onChange={this.handleChange}
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>Email:</label>
-            <input
-              placeholder="email..."
-              name='email'
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>Password:</label>
-            <input
-              placeholder="password..."
-              name='password'
-              value={this.state.password}
-              onChange={this.handleChange}
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>Confirm Password:</label>
-            <input
-              placeholder="password confirmation..."
-              name='password_confirmation'
-              value={this.state.password_confirmation}
-              onChange={this.handleChange}
-            />
-          </Form.Field>
-          <Button type='submit'>Submit</Button>
-        </Form>
-      </Container>
+      <div>
+        <Navigation isAuthenticated={isAuthenticated} />
+        <Container text style={{ marginTop: '7em' }}>
+          <Header as='h3'>Sign Up!</Header>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Field>
+              <label>Name:</label>
+              <input
+                placeholder="name..."
+                name='name'
+                value={this.state.name}
+                onChange={this.handleChange}
+              />
+            </Form.Field>
+            <Form.Field>
+              <label>Email:</label>
+              <input
+                placeholder="email..."
+                name='email'
+                value={this.state.email}
+                onChange={this.handleChange}
+              />
+            </Form.Field>
+            <Form.Field>
+              <label>Password:</label>
+              <input
+                placeholder="password..."
+                name='password'
+                value={this.state.password}
+                onChange={this.handleChange}
+              />
+            </Form.Field>
+            <Form.Field>
+              <label>Confirm Password:</label>
+              <input
+                placeholder="password confirmation..."
+                name='password_confirmation'
+                value={this.state.password_confirmation}
+                onChange={this.handleChange}
+              />
+            </Form.Field>
+            <Button type='submit'>Submit</Button>
+          </Form>
+        </Container>
+      </div>
     )
   }
 }
 
-export default Signup = withRouter(connect(null, {signup})(Signup));
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.app.isAuthenticated
+  }
+}
+
+export default Signup = withRouter(connect(mapStateToProps, {signup})(Signup));

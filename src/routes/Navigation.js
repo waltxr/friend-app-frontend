@@ -16,6 +16,9 @@ class Navigation extends Component {
     const mainNav = (
       <Container>
         <Menu.Item header>
+          <Link to="/">Home</Link>
+        </Menu.Item>
+        <Menu.Item header>
           <Link to="/login">Log In</Link>
         </Menu.Item>
         <Menu.Item header>
@@ -24,14 +27,14 @@ class Navigation extends Component {
       </Container>
     )
 
-        const userNav = (
+    const userNav = (
       <Container>
         <Menu.Item header>
           <Link to='/user/'>{this.props.currentUserName}</Link>
         </Menu.Item>
         <Menu.Item header onClick={(e) => this.handleLogout(e)}>
           Log Out
-        </Menu.Item>        
+        </Menu.Item>
       </Container>
     )
 
