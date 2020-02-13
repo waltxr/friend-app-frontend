@@ -16,6 +16,7 @@ import {
   Visibility,
 } from 'semantic-ui-react'
 import { Link, withRouter } from "react-router-dom";
+import iphone from '../images/iphone.png'
 
 
 
@@ -48,10 +49,12 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button primary size='huge'>
-      Get Started
-      <Icon name='right arrow' />
-    </Button>
+    <Link to='/signup'>
+      <Button primary size='huge'>
+        Get Started
+        <Icon name='right arrow' />
+      </Button>
+    </Link>
   </Container>
 )
 
@@ -93,16 +96,17 @@ class DesktopContainer extends Component {
                 <Menu.Item as='a' active>
                   Home
                 </Menu.Item>
-                <Menu.Item as='a'>What</Menu.Item>
-                <Menu.Item as='a'>Why</Menu.Item>
-                <Menu.Item as='a'>Who</Menu.Item>
                 <Menu.Item position='right'>
-                  <Button as='a' inverted={!fixed}>
-                    <Link to="/login">Log In</Link>
-                  </Button>
-                  <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
-                    Sign Up
-                  </Button>
+                  <Link to='/login'>
+                    <Button as='a' inverted={!fixed}>
+                      Log In
+                    </Button>
+                  </Link>
+                  <Link to='/signup'>
+                    <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
+                      Sign Up
+                    </Button>
+                  </Link>
                 </Menu.Item>
               </Container>
             </Menu>
@@ -225,12 +229,14 @@ class HomepageLayout extends Component {
                 </p>
               </Grid.Column>
               <Grid.Column floated='right' width={6}>
-                <Image bordered rounded size='large' src='/images/wireframe/white-image.png' />
+                <Image rounded centered size='medium' src={iphone} />
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
               <Grid.Column textAlign='center'>
+              <Link to='/signup'>
                 <Button size='huge'>Check It Out</Button>
+              </Link>
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -250,8 +256,7 @@ class HomepageLayout extends Component {
                   "Friend App is Sick"
                 </Header>
                 <p style={{ fontSize: '1.33em' }}>
-                  <Image avatar src='/images/avatar/large/nan.jpg' />
-                  <b>Nan</b> The person who made it.
+                  The person who made it.
                 </p>
               </Grid.Column>
             </Grid.Row>
@@ -266,10 +271,6 @@ class HomepageLayout extends Component {
             <p style={{ fontSize: '1.33em' }}>
               Currently we only have a feature to file grievances against your friends, but more to come!
             </p>
-            <Button as='a' size='large'>
-              Read More
-            </Button>
-
           </Container>
         </Segment>
 
@@ -280,23 +281,23 @@ class HomepageLayout extends Component {
                 <Grid.Column width={3}>
                   <Header inverted as='h4' content='About' />
                   <List link inverted>
-                    <List.Item as='a'>Contact Us</List.Item>
+                    <List.Item as='a' href='mailto:me@adamiwalter.com' target='_blank' rel="noopener noreferrer">Contact Us</List.Item>
                   </List>
                 </Grid.Column>
                 <Grid.Column width={3}>
                   <Header inverted as='h4' content='Repos' />
                   <List link inverted>
-                    <List.Item as='a'>Frontend</List.Item>
-                    <List.Item as='a'>Backend</List.Item>
+                    <List.Item as='a' href='https://github.com/Waltxr/friend-app-frontend' target='_blank' rel="noopener noreferrer">Frontend</List.Item>
+                    <List.Item as='a' href='https://github.com/Waltxr/friend-app-backend' target='_blank' rel="noopener noreferrer">Backend</List.Item>
                   </List>
                 </Grid.Column>
                 <Grid.Column width={7}>
                   <Header as='h4' inverted>
                     Who made this?
                   </Header>
-                  <p>
-                    Link to my website
-                  </p>
+                  <List link inverted>
+                    <List.Item href='https://adamiwalter.com/' target='_blank' rel="noopener noreferrer">Adam</List.Item>
+                  </List>
                 </Grid.Column>
               </Grid.Row>
             </Grid>

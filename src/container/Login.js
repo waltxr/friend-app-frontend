@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Form, Container, Header, Message } from 'semantic-ui-react'
+import { Button, Form, Container, Header, Message, Grid, Image, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { authenticate } from '../actions/appActions';
 import Navigation from '../routes/Navigation';
+import logo from '../images/logo.png'
 
 class Login extends Component {
   constructor(props){
@@ -45,36 +46,45 @@ class Login extends Component {
 
   render() {
     const {isAuthenticated} = this.props
-    
+
     return (
       <div>
         <Navigation isAuthenticated={isAuthenticated} />
-        <Container text style={{ marginTop: '7em' }}>
-          <Header as='h3'>Log in:</Header>
-          <Form onSubmit={this.handleSubmit}>
-           <Form.Field>
-             <label>Email:</label>
-             <input
-               placeholder='email...'
-               name='email'
-               value={this.state.email}
-               onChange={this.handleChange}
-             />
-           </Form.Field>
-           <Form.Field>
-             <label>Password:</label>
-             <input
-               placeholder='password...'
-               name='password'
-               type='password'
-               value={this.state.password}
-               onChange={this.handleChange}
-             />
-           </Form.Field>
-           <Button type='submit'>Submit</Button>
-            {this.errorHandling()}
-         </Form>
-       </Container>
+        <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+           <Grid.Column style={{ maxWidth: 450 }}>
+             <Header as='h2' color='black' textAlign='center'>
+                <Image src={logo} /> Log in to your account
+             </Header>
+             <Form onSubmit={this.handleSubmit}>
+             <Segment stacked>
+              <Form.Field>
+                <label>Email:</label>
+                <input
+                  placeholder='email...'
+                  name='email'
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+              <Form.Field>
+                <label>Password:</label>
+                <input
+                  placeholder='password...'
+                  name='password'
+                  type='password'
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+              <Button type='submit'>Submit</Button>
+               {this.errorHandling()}
+               </Segment>
+            </Form>
+            <Message>
+              New to Friend App? <Link to='/signup'>Sign Up</Link>
+            </Message>
+           </Grid.Column>
+        </Grid>
      </div>
     )
   }
