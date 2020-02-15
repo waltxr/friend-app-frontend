@@ -12,6 +12,13 @@ const group = (groupObject) => {
   }
 }
 
+const setGroups = groupsObject => {
+  return {
+    type: types.GET_GROUPS,
+    groups: groupsObject
+  }
+}
+
 const authRequest = () => {
   return {
     type: types.AUTHENTICATION_REQUEST
@@ -65,6 +72,22 @@ export const logout = () => {
 export const setGroup = groupObject => {
   return dispatch => {
     dispatch(group(groupObject))
+  }
+}
+
+export const getGroups = () => {
+  return dispatch => {
+    return fetch(`${API_URL}/groups`, {
+      method: 'GET',
+      headers: new Headers({
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`,
+      })
+    })
+    .then(response => response.json())
+    .then(groups => {
+      dispatch(setGroups(groups))
+    })
   }
 }
 

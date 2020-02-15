@@ -5,9 +5,11 @@ import { withRouter } from 'react-router-dom';
 import GrievanceList from './grievanceList'
 import GrievanceForm from './grievanceForm'
 import { getUsers } from '../../actions/userActions'
+import { getGroups } from '../../actions/appActions'
 import CreateGroup from '../createGroup'
 import GroupList from './groupList'
 import GroupHome from './GroupHome'
+import PublicGroups from './PublicGroups'
 
 
 
@@ -15,6 +17,7 @@ class UserProfile extends Component {
 
   componentWillMount() {
     this.props.getUsers()
+    this.props.getGroups()
   }
 
   componentDidMount() {
@@ -34,6 +37,7 @@ class UserProfile extends Component {
     const selectGroup = (
       <Container style={{ marginTop: '7em' }}>
         { this.props.currentUser.groups.length > 0 ? groupList : newUser}
+        { this.props.groups ? <PublicGroups groups={this.props.groups}/> : null }
       </Container>
     )
 
@@ -61,8 +65,9 @@ const mapStateToProps = (state) => {
     currentUser: state.app.currentUser,
     currentUserComments: state.app.userComments,
     users: state.users.list,
-    currentGroup: state.app.currentGroup
+    currentGroup: state.app.currentGroup,
+    groups: state.app.groups
   }
 }
 
-export default UserProfile = withRouter(connect(mapStateToProps, {getUsers})(UserProfile))
+export default UserProfile = withRouter(connect(mapStateToProps, {getUsers, getGroups})(UserProfile))

@@ -10,7 +10,8 @@ const initialState = {
   userReceivedGrievances: {},
   token: null,
   errors: null,
-  currentGroup: false
+  currentGroup: false,
+  groups: null
 }
 
 export default (state = initialState, action) => {
@@ -71,7 +72,7 @@ export default (state = initialState, action) => {
         userFiledGrievances: merge({}, state.userFiledGrievances, action.grievance.entities.grievances)
       }
 
-    case types.ADD_COMMENT:      
+    case types.ADD_COMMENT:
       return {
         ...state,
         userComments: merge({}, state.userComments, action.comment.entities.comments)
@@ -81,6 +82,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         currentGroup: action.group
+      }
+
+    case types.GET_GROUPS:      
+      return {
+        ...state,
+        groups: action.groups
       }
 
     case types.RESET_FORM:

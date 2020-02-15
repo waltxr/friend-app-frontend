@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 class GroupList extends Component {
 
-  render() {
+  render() {    
     const groups = this.props.groups
     .map( group => <GroupCard group={group} key={group.id}/>)
 

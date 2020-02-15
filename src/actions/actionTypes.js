@@ -12,3 +12,5 @@ export const RESET_FORM = "RESET_FORM"
 export const ADD_COMMENT = "ADD_COMMENT"
 
 export const SET_GROUP = "SET_GROUP"
+
+export const GET_GROUPS = "GET_GROUPS"
