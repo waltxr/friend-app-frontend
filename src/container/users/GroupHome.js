@@ -9,8 +9,8 @@ import GroupPostsMenu from './GroupPostsMenu'
 class GroupHome extends Component {
 
   render() {
-    return (
-      <Grid divided='vertically' text style={{ marginTop: '7em' }}>
+    return (      
+      <Grid divided='vertically' text style={{ marginTop: '7em' }}>        
         <Header>{this.props.currentGroup.name}</Header>
         <Grid.Row columns={2}>
           <Grid.Column width={6}>

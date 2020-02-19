@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { List } from 'semantic-ui-react'
+import { List, Container, Header } from 'semantic-ui-react'
 import GroupListItem from './GroupListItem'
 
 class PublicGroups extends Component {
@@ -11,9 +11,12 @@ class PublicGroups extends Component {
     .map( group => <GroupListItem group={group} key= {group.id} /> )
 
     return(
-      <List divided relaxed>
-        {groups}
-      </List>
+      <Container>
+        <Header>Join Groups</Header>
+        <List divided relaxed>
+          {groups}
+        </List>
+      </Container>
     )
   }
 

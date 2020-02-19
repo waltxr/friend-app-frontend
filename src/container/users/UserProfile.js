@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Container, Card } from 'semantic-ui-react'
+import { Container, Card, Grid } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom';
 import GrievanceList from './grievanceList'
 import GrievanceForm from './grievanceForm'
@@ -31,13 +31,25 @@ class UserProfile extends Component {
     )
 
     const groupList = (
-      <GroupList groups={this.props.currentUser.groups} />
+      <Grid>
+        <Grid.Row columns={2}>
+          <Grid.Column>
+            <GroupList groups={this.props.currentUser.groups} />
+          </Grid.Column>
+          <Grid.Column>
+            <CreateGroup />
+          </Grid.Column>        
+        </Grid.Row>
+        
+        <Grid.Row columns={1} >
+          { this.props.groups ? <PublicGroups groups={this.props.groups} /> : null }
+        </Grid.Row>        
+      </Grid>
     )
 
     const selectGroup = (
       <Container style={{ marginTop: '7em' }}>
-        { this.props.currentUser.groups.length > 0 ? groupList : newUser}
-        { this.props.groups ? <PublicGroups groups={this.props.groups}/> : null }
+        { this.props.currentUser.groups.length > 0 ? groupList : newUser}        
       </Container>
     )
 
