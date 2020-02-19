@@ -1,21 +1,32 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { List, Container, Header } from 'semantic-ui-react'
+import { List, Container, Header, Search } from 'semantic-ui-react'
 import GroupListItem from './GroupListItem'
 
-class PublicGroups extends Component {
+const initialState = groups =>  {
+  return {
+    isLoading: false,
+    results: groups,
+    value: ''
+  }
+}
 
-  render() {    
-    const groups = this.props.groups
+class PublicGroups extends Component {
+  state = initialState(this.props.groups)
+
+  render() {
+    const groups = this.state.results
     .map( group => <GroupListItem group={group} key= {group.id} /> )
 
     return(
       <Container style={{marginTop: '3em'}}>
         <Header>Join Groups</Header>
-        <List animated verticalAlign='middle'>
-          {groups}
-        </List>
+          <Search>
+          </Search>
+          <List animated verticalAlign='middle'>
+            {groups}
+          </List>
       </Container>
     )
   }
