@@ -11,9 +11,9 @@ class PublicGroups extends Component {
     .map( group => <GroupListItem group={group} key= {group.id} /> )
 
     return(
-      <Container>
+      <Container style={{marginTop: '3em'}}>
         <Header>Join Groups</Header>
-        <List divided relaxed>
+        <List animated verticalAlign='middle'>
           {groups}
         </List>
       </Container>

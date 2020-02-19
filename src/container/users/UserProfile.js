@@ -34,16 +34,13 @@ class UserProfile extends Component {
       <Grid>
         <Grid.Row columns={2}>
           <Grid.Column>
-            <GroupList groups={this.props.currentUser.groups} />
-          </Grid.Column>
-          <Grid.Column>
             <CreateGroup />
+            { this.props.groups ? <PublicGroups groups={this.props.groups} /> : null }
+          </Grid.Column>
+          <Grid.Column>            
+            <GroupList groups={this.props.currentUser.groups} />
           </Grid.Column>        
         </Grid.Row>
-        
-        <Grid.Row columns={1} >
-          { this.props.groups ? <PublicGroups groups={this.props.groups} /> : null }
-        </Grid.Row>        
       </Grid>
     )
 

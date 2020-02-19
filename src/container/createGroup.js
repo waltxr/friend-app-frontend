@@ -28,7 +28,7 @@ class CreateGroup extends Component {
   render() {
     return(
       <Container>
-        <Header centered as='h3'>Create Friend Group</Header>
+        <Header centered as='h3'>Create Group</Header>
         <Form onSubmit={this.handleSubmit}>
           <Form.Field>
             <label>Group Name:</label>

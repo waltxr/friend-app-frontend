@@ -86,6 +86,7 @@ export const getGroups = () => {
     })
     .then(response => response.json())
     .then(groups => {
+      console.log(groups);
       dispatch(setGroups(groups))
     })
   }
