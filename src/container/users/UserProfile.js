@@ -35,18 +35,18 @@ class UserProfile extends Component {
         <Grid.Row columns={2}>
           <Grid.Column>
             <CreateGroup />
-            { this.props.groups ? <PublicGroups groups={this.props.groups} /> : null }
+            {this.props.groups ? <PublicGroups groups={this.props.groups} /> : null }
           </Grid.Column>
-          <Grid.Column>            
+          <Grid.Column>
             <GroupList groups={this.props.currentUser.groups} />
-          </Grid.Column>        
+          </Grid.Column>
         </Grid.Row>
       </Grid>
     )
 
     const selectGroup = (
       <Container style={{ marginTop: '7em' }}>
-        { this.props.currentUser.groups.length > 0 ? groupList : newUser}        
+        { this.props.currentUser.groups.length > 0 ? groupList : newUser}
       </Container>
     )
 

@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { List, Container, Header, Search } from 'semantic-ui-react'
+import { List, Container, Header, Search, Grid } from 'semantic-ui-react'
 import GroupListItem from './GroupListItem'
 import { API_URL } from '../../actions/apiUrl'
+import { setGroup } from '../../actions/appActions'
+
 
 
 const initialState = groups =>  {
@@ -35,26 +37,42 @@ class PublicGroups extends Component {
     }, 300)
   }
 
+  handleResultSelect = (e, {result}) => {
+    let group = this.state.results.find(g => g.id = result.id)    
+    this.props.setGroup(group)
+  }
+
   render() {
-    console.log(this.state);
     const { isLoading, value, results } = this.state
 
-    const groups = results
+    const groups = this.props.groups
     .map( group => <GroupListItem group={group} key= {group.id} /> )
+
+    let resultsArray = results.map(element => {
+      return { title: element.name, description: element.description, image: element.avatar, id: element.id }
+    })
 
     return(
       <Container style={{marginTop: '3em'}}>
-        <Header>Join Groups</Header>
-          <Search
-              onSearchChange={this.handleSearchChange}
-              loading={isLoading}
-              results={results}
-              value={value}
-              {...this.props}
-          />
-          <List animated verticalAlign='middle'>
-            {groups}
-          </List>
+        <Grid>
+          <Grid.Row columns={2}>
+            <Grid.Column>
+              <Header>Discover Groups</Header>
+              <List animated verticalAlign='middle'>
+                {groups}
+              </List>
+            </Grid.Column>
+            <Grid.Column>
+              <Search
+                onSearchChange={this.handleSearchChange}
+                loading={isLoading}
+                results={resultsArray}
+                value={value}
+                onResultSelect={this.handleResultSelect}
+              />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </Container>
     )
   }
@@ -68,4 +86,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default PublicGroups = withRouter(connect(mapStateToProps, {})(PublicGroups))
+export default PublicGroups = withRouter(connect(mapStateToProps, {setGroup})(PublicGroups))
