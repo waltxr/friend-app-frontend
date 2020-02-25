@@ -60,6 +60,32 @@ const addComment = (comment) => {
   }
 }
 
+const joinGroup = (group) => {
+  return {
+    type: types.JOIN_GROUP,
+    group: group
+  }
+}
+
+export const joinGroupButton = group => {
+  console.log(group);
+  return dispatch => {
+    return fetch(`${API_URL}/groups/${group.id}`, {
+      method: 'POST',
+      headers: new Headers({
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`
+      }),
+      body: JSON.stringify(group)
+    })
+    .then(response => response.json())
+    .then(res => {
+      console.log(res);
+      dispatch(joinGroup(group))
+    })
+  }
+}
+
 export const logout = () => {
   return dispatch => {
     localStorage.clear();
