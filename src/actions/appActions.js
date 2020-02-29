@@ -67,10 +67,16 @@ const joinGroup = (group) => {
   }
 }
 
+const leaveGroup = (group) => {
+  return {
+    type: types.LEAVE_GROUP,
+    group: group
+  }
+}
+
 export const joinGroupButton = group => {
-  console.log(group);
   return dispatch => {
-    return fetch(`${API_URL}/groups/${group.id}`, {
+    return fetch(`${API_URL}/groups/join/${group.id}`, {
       method: 'POST',
       headers: new Headers({
         "Content-Type": "application/json",
@@ -81,7 +87,24 @@ export const joinGroupButton = group => {
     .then(response => response.json())
     .then(res => {
       console.log(res);
-      dispatch(joinGroup(group))
+      dispatch(joinGroup(res))
+    })
+  }
+}
+
+export const leaveGroupButton = group => {
+  return dispatch => {
+    return fetch(`${API_URL}/groups/leave/${group.id}`, {
+      method: 'POST',
+      headers: new Headers({
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`
+      }),
+      body: JSON.stringify(group)
+    })
+    .then(response => response.json())
+    .then(res => {
+      dispatch(leaveGroup(res))
     })
   }
 }
@@ -112,7 +135,6 @@ export const getGroups = () => {
     })
     .then(response => response.json())
     .then(groups => {
-      console.log(groups);
       dispatch(setGroups(groups))
     })
   }

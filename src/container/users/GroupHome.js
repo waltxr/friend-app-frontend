@@ -6,26 +6,37 @@ import GrievanceList from './grievanceList'
 import GroupMembers from './GroupMembers'
 import GroupPostsMenu from './GroupPostsMenu'
 import { joinGroupButton } from '../../actions/appActions';
+import { leaveGroupButton } from '../../actions/appActions';
 
 
 class GroupHome extends Component {
 
-  handleClick = (e) => {
+  handleJoinClick = (e) => {
     e.preventDefault();
     console.log('pressed join button');
     this.props.joinGroupButton(this.props.currentGroup)
   }
 
-  render() {
+  handleLeaveClick = (e) => {
+    e.preventDefault();
+    console.log('pressed join button');
+    this.props.leaveGroupButton(this.props.currentGroup)
+  }
 
+  render() {
+    console.log(this.props);
     const joinButton = (
-      <Button onClick={this.handleClick} primary>Join Group</Button>
+      <Button onClick={this.handleJoinClick} primary>Join Group</Button>
+    )
+
+    const leaveButton = (
+      <Button onClick={this.handleLeaveClick} primary>Leave Group</Button>
     )
 
     return (
-      <Grid divided='vertically' text style={{ marginTop: '7em' }}>
+      <Grid divided='vertically' style={{ marginTop: '7em' }}>
         <Header>{this.props.currentGroup.name}</Header>
-        { this.props.currentGroup.members.includes(this.props.currentuser) ? null : joinButton }
+        { this.props.currentGroup.members.filter(member => member.id === this.props.currentUser.id).length > 0 ? leaveButton : joinButton }
         <Grid.Row columns={2}>
           <Grid.Column width={6}>
             <GroupMembers members={this.props.currentGroup.members}/>
@@ -51,4 +62,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default GroupHome = withRouter(connect(mapStateToProps, {joinGroupButton})(GroupHome))
+export default GroupHome = withRouter(connect(mapStateToProps, {joinGroupButton, leaveGroupButton})(GroupHome))

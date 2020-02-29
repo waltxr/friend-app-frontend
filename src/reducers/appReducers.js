@@ -84,10 +84,24 @@ export default (state = initialState, action) => {
         currentGroup: action.group
       }
 
-    case types.GET_GROUPS:      
+    case types.GET_GROUPS:
       return {
         ...state,
         groups: action.groups
+      }
+
+    case types.JOIN_GROUP:
+    console.log(action);
+      return {
+        ...state,
+        currentGroup: action.group
+      }
+
+    case types.LEAVE_GROUP:
+    console.log(action);
+      return {
+        ...state,
+        currentGroup: action.group
       }
 
     case types.RESET_FORM:

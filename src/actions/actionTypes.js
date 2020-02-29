@@ -16,3 +16,5 @@ export const SET_GROUP = "SET_GROUP"
 export const GET_GROUPS = "GET_GROUPS"
 
 export const JOIN_GROUP = "JOIN_GROUP"
+
+export const LEAVE_GROUP = "LEAVE_GROUP"
