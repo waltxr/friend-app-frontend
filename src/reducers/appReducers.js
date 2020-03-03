@@ -67,9 +67,14 @@ export default (state = initialState, action) => {
       }
 
     case types.FILE_GRIEVANCE:
+    debugger
       return {
         ...state,
-        userFiledGrievances: merge({}, state.userFiledGrievances, action.grievance.entities.grievances)
+        // userFiledGrievances: merge({}, state.userFiledGrievances, action.grievance.entities.grievances),
+        currentGroup: {
+          ...state.currentGroup,
+          grievances: [...state.currentGroup.grievances, action.grievance]
+        }
       }
 
     case types.ADD_COMMENT:

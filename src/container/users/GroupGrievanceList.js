@@ -21,7 +21,8 @@ class GroupGrievanceList extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentGroup: state.app.currentGroup
+    currentGroup: state.app.currentGroup,
+    userFiledGrievances: state.app.userFiledGrievances
   }
 }
 

@@ -229,7 +229,8 @@ export const fileGrievance = (grievance) => {
     })
     .then(response => response.json())
     .then(grievance => {
-      dispatch(addGrievance(normalize(grievance, grievanceSchema)))
+      // dispatch(addGrievance(normalize(grievance, grievanceSchema)))
+      dispatch(addGrievance(grievance))
       dispatch(resetForm())
     })
     .catch(error => console.log(error))

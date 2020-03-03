@@ -29,14 +29,10 @@ class GroupHome extends Component {
       <Button onClick={this.handleJoinClick} primary>Join Group</Button>
     )
 
-    const leaveButton = (
-      <Button onClick={this.handleLeaveClick} primary>Leave Group</Button>
-    )
-
-    return (
+    const memberView = (
       <Grid divided='vertically' style={{ marginTop: '7em' }}>
         <Header>{this.props.currentGroup.name}</Header>
-        { this.props.currentGroup.members.filter(member => member.id === this.props.currentUser.id).length > 0 ? leaveButton : joinButton }
+        <Button onClick={this.handleLeaveClick} primary>Leave Group</Button>
         <Grid.Row columns={2}>
           <Grid.Column width={6}>
             <GroupMembers members={this.props.currentGroup.members}/>
@@ -48,6 +44,30 @@ class GroupHome extends Component {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+    )
+
+    const guestView = (
+      <Grid divided='vertically' style={{ marginTop: '7em' }}>
+        <Header>{this.props.currentGroup.name}</Header>
+        <Button onClick={this.handleJoinClick} primary>Join Group</Button>
+        <Grid.Row columns={2}>
+          <Grid.Column width={6}>
+            <GroupMembers members={this.props.currentGroup.members}/>
+          </Grid.Column>
+          <Grid.Column width={10}>
+            <Header>Join group to view posts</Header>
+          </Grid.Column>
+          <Grid.Column>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    )
+
+    return (
+      <div>
+        { this.props.currentGroup.members.filter(member => member.id === this.props.currentUser.id).length > 0 ? memberView : guestView }
+      </div>
+
     )
   }
 
